@@ -15,5 +15,5 @@ app.get('/:id', function (req, res) {
 })  
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Site open on port ${port}`);
 })
