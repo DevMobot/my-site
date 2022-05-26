@@ -11,16 +11,6 @@ app.use(express.json());
 
 app.use("/", HomeRouter);
 
-/*
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/home.html'))
-})  
-
-app.get('/:id', function (req, res) {
-    res.send('Hello ' + req.params.id)
-}) 
-*/
-
 app.listen(port, () => {
     console.log(`Site open on port ${port}`);
 })
