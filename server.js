@@ -1,18 +1,25 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 80;
+const path = require('path');
 
-app.use(express.static("./public/"))
+const HomeRouter = require("./routes/home.js");
+
+app.use("/resources", express.static("./css/"))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use("/", HomeRouter);
+
+/*
 app.get('/', function (req, res) {
-    res.send("HELLO")
+    res.sendFile(path.join(__dirname+'/views/home.html'))
 })  
 
 app.get('/:id', function (req, res) {
     res.send('Hello ' + req.params.id)
-})  
+}) 
+*/
 
 app.listen(port, () => {
     console.log(`Site open on port ${port}`);
