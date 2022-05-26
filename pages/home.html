@@ -3,9 +3,18 @@
     <head>
         <title>Hello</title>
         <link rel="stylesheet" href="css/home.css">
-      </head>
+    </head>
     <body>
         <h1>HELLO</h1>
         <p>WAAHAHAHAHAHAHAHHAHAH</p>
+        <a id="k">k</a>
     </body>
+    
+    <script> // USING SCRIPT TO CHANGE VALUES 
+        window.onload = function() {
+            //when the document is finished loading, replace everything
+            //between the <a ...> </a> tags with the value of splitText
+            document.getElementById("k").innerHTML="OK";
+        }
+    </script>
 </html>
