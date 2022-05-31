@@ -3,7 +3,6 @@ const path = require("path");
 const fs = require('fs');
 const yts = require('yt-search');
 const ytdl = require('ytdl-core');
-const mime = require('mime');
 
 router.get('/',async function (req, res) {
     const search = req.query.search;
