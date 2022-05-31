@@ -1,7 +1,7 @@
 const express = require('express') 
 const app = express()
 const path = require("path")
-const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
+const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
 module.exports.port = port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
