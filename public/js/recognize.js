@@ -1,4 +1,3 @@
-/* JS comes here */
 function runSpeechRecognition() {
     // get output div reference
     var output = document.getElementById("output");
@@ -7,7 +6,7 @@ function runSpeechRecognition() {
     // new speech recognition object
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
     var recognition = new SpeechRecognition();
-
+    
     // This runs when the speech recognition service starts
     recognition.onstart = function() {
         action.innerHTML = "<small>listening, please speak...</small>";
@@ -22,10 +21,10 @@ function runSpeechRecognition() {
     recognition.onresult = function(event) {
         var transcript = event.results[0][0].transcript;
         var confidence = event.results[0][0].confidence;
+
         output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Confidence:</b> " + confidence*100+"%";
         output.classList.remove("hide");
     };
-  
-     // start recognition
-     recognition.start();
+    
+    recognition.start();
 }
