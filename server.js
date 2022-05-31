@@ -6,6 +6,7 @@ module.exports.port = port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");
+const YtdlRouter = require("./routes/ytdl.js");
 
 app.use(express.static(__dirname + '/public/')); // ROOT TO ACCESS FILES
 app.use(express.urlencoded({ extended: true }));
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/", HomeRouter); // HOME ROUTES
 app.use("/api", ApiRouter); // API ROUTER
+app.use("/ytdl", YtdlRouter);
 
 app.use((req, res, next) => { // 404
     res.status(404).sendFile(path.join(__dirname, "/pages/404.html"));
