@@ -9,7 +9,7 @@ cd ~
 
 cp -r ./my-site/pages ./storage/shared/Site/
 cp -r ./my-site/public ./storage/shared/Site/
-cp -r ./my-site/routes ./storage/shared/Site/
+cp -r ./my-site/resources ./storage/shared/Site/
 cp -r ./my-site/server.js ./storage/shared/Site/
 
 echo -e "\nComplete! \nUpdating Dependencies..."
