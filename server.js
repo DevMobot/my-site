@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const fs = require("fs")
 const path = require("path")
-const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
+const port = process.env.PORT || require("./config.js").PORT || 3000; // GET PORT TO LISTEN ON
 module.exports.port = port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER

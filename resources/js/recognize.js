@@ -1,6 +1,6 @@
 function runSpeechRecognition() {
     // get output div reference
-    var output = document.getElementById("output");
+    var output = document.getElementById("chatBox");
     // get action element reference
     var action = document.getElementById("action");
     // new speech recognition object
