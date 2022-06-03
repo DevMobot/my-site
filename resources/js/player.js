@@ -146,3 +146,10 @@ function seekUpdate() {
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 }
+
+function songList() {
+  track_list.forEach(song => {
+    document.getElementById('trackList').innerHTML += ('<li>'+song.name+'</li>');
+  })
+}
+songList();
