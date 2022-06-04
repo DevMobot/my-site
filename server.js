@@ -1,8 +1,11 @@
-const express = require('express') 
-const app = express()
-const fs = require("fs")
-const path = require("path")
-const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
+const express = require('express'); 
+const fs = require("fs");
+const path = require("path");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+const app = express();
+const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
 module.exports.port = port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
@@ -13,6 +16,12 @@ const dRouter = require("./routes/d.js");
 app.use(express.static(__dirname + '/resources/')); // ROOT TO ACCESS FILES
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+app.use(session({
+    secret: "mann-mohit-cyberaxy-mobot",
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use("/", HomeRouter); // HOME ROUTES
 app.use("/api", ApiRouter); // API ROUTER

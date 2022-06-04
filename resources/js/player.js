@@ -22,10 +22,10 @@ let curr_track = document.createElement('audio');
 // Define the tracks that have to be played
 let track_list = [
   {
-    name: "Ultimate",
-    artist: "Denzel Curry",
+    name: "joker bgm",
+    artist: "yt",
     image: "../images/art.jpg",
-    path: "../audios/ultimate.mp3"
+    path: "http://localhost:3000/api/yts"
   },
   {
     name: "Industry Baby",
@@ -40,7 +40,6 @@ let track_list = [
     path: "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3",
   },
 ];
-
 
 function random_bg_color() {
 
