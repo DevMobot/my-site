@@ -5,7 +5,7 @@ const ytdl = require('ytdl-core');
 const ytas = require('youtube-audio-stream');
 
 router.get('/getTracks',function(req, res) {
-    res.json(req.session.tracks);
+    res.send(req.session.tracks);
     //console.log(req.session.tracks); 
 });
 router.get('/ytstream', async (req, res) => {
@@ -25,18 +25,23 @@ router.get('/ytp', async (req, res) => {
         const playlist_vid_count = data.videos.length;
         const videos = data.videos;
 
-        res.cookie("playlistURL", playlistURL);
         res.cookie("playlist_vid_count", playlist_vid_count);
-        res.cookie("playlist_title", playlist_title);
 
         req.session.tracks = [];
 
-        videos.forEach(v => {
-            req.session.tracks.push({ title: v.title, videoId: v.videoId });
+        videos.forEach(async v => {
+            req.session.tracks.push({ 
+                title: v.title.replace(/[^\w\s]/gi, '').split(/ +/).join("_"),
+                path: `http://localhost/api/ytstream?vID=${v.videoId}`,
+                artist: `${v.author.name}`,
+                image: `${v.thumbnail}`
+            });
         })
 
-        console.log(playlistID);
-        res.send("k")
+        //console.log(videos);
+        //console.log(playlistID);
+        res.redirect('http://localhost/player');
+
     } catch (e) {
         //console.log(e);
         res.send("Err\n"+e);
