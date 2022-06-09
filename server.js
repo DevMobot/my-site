@@ -4,8 +4,9 @@ const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
+const config = require("./config.js");
 const app = express();
-const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
+const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
 module.exports.port = port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
@@ -32,6 +33,8 @@ app.use((req, res, next) => { // 404
     res.status(404).sendFile(path.join(__dirname, "/pages/404.html"));
 })
 // LISTENING FOR REQUESTS
-app.listen(port, () => {
+var listener = app.listen(port, () => {
     console.log(`READY! Listening on port ${port}`);
+    config.set("port", listener.address().port);
+    config.set("host", `http://localhost:${listener.address().port}`)
 })

@@ -16,6 +16,8 @@ let track_index = 0;
 let isPlaying = false;
 let updateTimer;
 
+const host = location.host;
+
 // Create new audio element
 let curr_track = document.createElement('audio');
 
@@ -27,8 +29,8 @@ function Get(yourUrl){
   return Httpreq.responseText;          
 }
 
-// Define the tracks that have to be played
-let track_list = JSON.parse(Get("http://localhost:3000/api/getTracks"));
+// Define the tracks that have to be play"ed
+let track_list = JSON.parse(Get("http://"+host+"/api/getTracks"));
 
 function random_bg_color() {
 
@@ -48,6 +50,8 @@ function loadTrack(track_index) {
   clearInterval(updateTimer);
   resetValues();
   curr_track.src = track_list[track_index].path;
+
+  Get(`http://${host}/api/trackindexsave?ti=${track_index}`);
   
   curr_track.load();
 
@@ -58,7 +62,7 @@ function loadTrack(track_index) {
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
-  random_bg_color();
+  //random_bg_color();
 }
 
 function resetValues() {
@@ -140,4 +144,28 @@ function songList() {
     document.getElementById('trackList').innerHTML += ('<li>'+song.title+'</li>');
   })
 }
-songList();
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+const noSeek = () => {
+  let noSeeking = getCookie("noSeek");
+  if (noSeeking == "yes") {
+    seek_slider.style.display = "none";
+    total_duration.style.display = "none";
+  } else return;
+}
+noSeek();
+//songList();

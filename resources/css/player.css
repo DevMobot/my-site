@@ -1,5 +1,5 @@
 body {
-    background-color: lightgreen;
+    background-color: #333333;
   
     /* Smoothly transition the background color */
     transition: background-color .5s;
@@ -119,4 +119,25 @@ ol {
     list-style-type: none;
     margin: 1%;
     padding: 1%;
+}
+.exit-button {
+    position: absolute;
+    align-items: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 150px;
+    height: 35px;
+    font-family: monospace;
+    justify-content: center;
+    border-radius: 35px;
+    background: inherit;
+    display: flex;
+    font-weight: bold;
+    padding: 2px 0px 0px;
+    border: 2px ;
+}
+.exit-button-container {
+    padding: 10px;
+    margin-bottom: 50px;
 }

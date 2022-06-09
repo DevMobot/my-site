@@ -1,3 +1,46 @@
 body {
-    background-color: violet;
+    background-color: #282828;
+    font-family: monospace;
+    text-align: center;
+    color: #afafaf;
+}
+h1 {
+    position: relative;
+    display: inline-block;
+    background-color: #212121;
+    border-radius: 12px;
+    color: #FF0000;
+    font-weight: bold;
+    width: 100%;
+    border: 2px dashed #FF0000;
+    text-align: center;
+    font-family: cursive, monospace;
+    padding: 10px 0px;
+}
+.play-button {
+    position: relative;
+    width: 80px;
+    height: 35px;
+    background-color: #6e6e6e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: large;
+}
+form {
+    background-color: #232323;
+    border-radius: 10px;
+    place-items: center;
+    padding: 40px;
+    border: 2px dashed #C4302B;
+}
+form {
+    font-size: 18px;
+}
+#playlist_input {
+    padding: 5px 50px;
+}
+.disableSeekLabel {
+    font-size: 15px;
 }
