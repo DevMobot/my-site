@@ -28,7 +28,7 @@ function Get(yourUrl){
 }
 
 // Define the tracks that have to be played
-let track_list = JSON.parse(Get("http://localhost/api/getTracks"));
+let track_list = JSON.parse(Get("http://localhost:3000/api/getTracks"));
 
 function random_bg_color() {
 
@@ -48,7 +48,7 @@ function loadTrack(track_index) {
   clearInterval(updateTimer);
   resetValues();
   curr_track.src = track_list[track_index].path;
-  //console.log(track_list)
+  
   curr_track.load();
 
   track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
