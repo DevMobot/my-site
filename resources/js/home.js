@@ -15,6 +15,6 @@ Get(`http://${host}/exit_player`);
 setCookie("noSeek", "no", 1);
 
 const isMobile = navigator.userAgentData.mobile;
-if (isMobile) {
-
+if (!isMobile) {
+	document.getElementById("container").classList.add("container")
 }

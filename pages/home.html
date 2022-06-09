@@ -7,15 +7,19 @@
 		<title>YT Player</title>
 	</head>
 	<body>
-		<h1><i class="fa-brands fa-youtube"></i> YouTube Music Player</h1>
-		<div class="form_container">
-			<form action="/api/ytp" method="GET">
-				<p>Enter Playlist link to play</p>
-				<input id="playlist_input" type="text" name="playlistURL" required> <br>
-				<input id="disableSeek" type="checkbox" name="disableSeeking" value="true">
-				<label class="disableSeekLabel" for="disableSeek"> Disable Seeker? </label> <br>
-				<button class="play-button" type="submit">Play</button> <br>
-			</form>
+		<div id="container">
+			<h1><i class="fa-brands fa-youtube"></i> YouTube Music Player</h1>
+			<div class="form_container">
+				<form action="/api/ytp" method="GET">
+					<p>Enter Playlist link to play</p>
+					<input id="playlist_input" type="text" name="playlistURL" required> <br>
+					<div id="checkBos1">
+						<input id="disableSeek" type="checkbox" name="disableSeeking" value="true">
+						<label class="disableSeekLabel" for="disableSeek">Disable Seeker? (recommended)</label>
+					</div> <br>
+					<button class="play-button" type="submit">Play</button> <br>
+				</form>
+			</div>
 		</div>
 		<script src="js/home.js"></script>
 	</body>

@@ -7,7 +7,7 @@ const deleteFile = require('../deleteFile.js');
 const fs = require('fs');
 
 const config = require("../config.js");
-const host = config.get("host"); 
+let host = config.get("host")
 
 router.get('/getTracks',function(req, res) {
     res.send(req.session.tracks);
@@ -24,7 +24,8 @@ router.get("/seeking", (req, res) => {
     else res.send("no");
 })
 router.get('/ytstream', async (req, res) => {
-	
+	host = config.get('host');
+
     const vID = req.query.vID;
     
     let trackIndex = req.session.track_index;
@@ -55,6 +56,8 @@ router.get('/ytstream', async (req, res) => {
     //ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 })
 router.get('/ytp', async (req, res) => {
+    host = config.get('host');
+
     try {
         const playlistURL = req.query.playlistURL;
         const disableSeeking = req.query.disableSeeking;
@@ -80,10 +83,10 @@ router.get('/ytp', async (req, res) => {
         req.session.tracks = [];
 
         videos.forEach(async v => {
-            let t = v.title.replace(/[^\w\s]/gi, '').split(/ +/).join("_");
+            let t = v.title.replace(/[^\w\s]/gi, '').split(/ +/).join(" ");
             if (t.length > 30) t.substring(0, 30);
             req.session.tracks.push({ 
-                title: t,
+                name: t,
                 path: `http://${host}/api/ytstream?vID=${v.videoId}`,
                 artist: `${v.author.name}`,
                 image: `${v.thumbnail}`,

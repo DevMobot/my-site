@@ -9,6 +9,12 @@ const app = express();
 const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
 module.exports.port = port;
 
+var listener = app.listen(port, () => {
+    console.log(`READY! Listening on port ${port}`);
+    config.set("port", listener.address().port);
+    config.set("host", `localhost:${listener.address().port}`);
+})
+
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");
 const YtdlRouter = require("./routes/ytdl.js");
@@ -32,9 +38,4 @@ app.use("/d", dRouter);
 app.use((req, res, next) => { // 404
     res.status(404).sendFile(path.join(__dirname, "/pages/404.html"));
 })
-// LISTENING FOR REQUESTS
-var listener = app.listen(port, () => {
-    console.log(`READY! Listening on port ${port}`);
-    config.set("port", listener.address().port);
-    config.set("host", `http://localhost:${listener.address().port}`)
-})
+//-----------------------------------------------

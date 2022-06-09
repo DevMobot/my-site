@@ -44,3 +44,11 @@ form {
 .disableSeekLabel {
     font-size: 15px;
 }
+
+.container {
+    padding: 0px 20px 20px;
+    margin-left: 3%;
+    margin-right: 3%;
+    background-color: #232323;
+    border-radius: 10px;
+}

@@ -14,7 +14,7 @@ router.get('/stt', (req, res) => {
 router.get("/exit_player", (req, res) => {
     req.session.track_index = 0;
     req.session.tracks = [];
-    res.send("OK");
+    res.redirect("/");
 })
 
 module.exports = router;
