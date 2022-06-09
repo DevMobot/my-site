@@ -3,17 +3,13 @@ const fs = require("fs");
 const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-
 const config = require("./config.js");
-const app = express();
-const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
-module.exports.port = port;
 
-var listener = app.listen(port, () => {
-    console.log(`READY! Listening on port ${port}`);
-    config.set("port", listener.address().port);
-    config.set("host", `localhost:${listener.address().port}`);
-})
+const app = express();
+
+const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
+module.exports.port = port;
+module.exports.host = "localhost:"+port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");
@@ -37,5 +33,11 @@ app.use("/d", dRouter);
 
 app.use((req, res, next) => { // 404
     res.status(404).sendFile(path.join(__dirname, "/pages/404.html"));
+})
+
+var listener = app.listen(port, () => {
+    console.log(`READY! Listening on port ${port}`);
+    config.set("port", listener.address().port);
+    config.set("host", `localhost:${listener.address().port}`);
 })
 //-----------------------------------------------

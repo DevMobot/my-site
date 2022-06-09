@@ -7,13 +7,22 @@ const deleteFile = require('../deleteFile.js');
 const fs = require('fs');
 
 const config = require("../config.js");
-let host = config.get("host")
+const host = require("../server.js").host;
 
 router.get('/getTracks',function(req, res) {
     res.send(req.session.tracks);
     //console.log(req.session.tracks)
 });
-router.get('/trackindexsave', (req, res) => {
+router.get('/trackindexsave', function getSessionViaQuerystring(req, res, next) {
+    var sessionId = req.query.sessionId;
+    if (!sessionId) return res.sendStatus(401); // Or whatever
+  
+    // Trick the session middleware that you have the cookie;
+    // Make sure you configure the cookie name, and set 'secure' to false
+    // in https://github.com/expressjs/session#cookie-options
+    req.cookies['connect.sid'] = req.query.session;
+    next();
+  }, (req, res) => {
     let index = req.query.ti;
     req.session.track_index = parseInt(index);
     res.send("k")
@@ -24,7 +33,7 @@ router.get("/seeking", (req, res) => {
     else res.send("no");
 })
 router.get('/ytstream', async (req, res) => {
-	host = config.get('host');
+	//host = config.get('host');
 
     const vID = req.query.vID;
     
@@ -38,25 +47,33 @@ router.get('/ytstream', async (req, res) => {
     	
     	res.sendFile(path.join(__dirname, "..", `/resources/audios/cache/${vID}.mp3`));
     	
-    	let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
-
-    	if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
-            ytdl('https://www.youtube.com/watch?v='+nextTrackVID).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+    	if (req.session.tracks[trackIndex+1].videoId) {
+            let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
+    	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
+                ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
+                    quality: "highestaudio"
+                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+            }
         }
     	
     } else {
     	//console.log('h')
     	ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 
-    	let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
-    	if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
-            ytdl('https://www.youtube.com/watch?v='+nextTrackVID).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+        if (req.session.tracks[trackIndex+1]) {
+            let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
+    	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
+                ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
+                    quality: "highestaudio"
+                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+            }
         }
+    	
     }
     //ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 })
 router.get('/ytp', async (req, res) => {
-    host = config.get('host');
+    //host = config.get('host');
 
     try {
         const playlistURL = req.query.playlistURL;
