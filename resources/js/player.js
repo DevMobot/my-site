@@ -75,8 +75,9 @@ function loadTrack(track_index) {
   resetValues();
   curr_track.src = track_list[track_index].path;
 
-  let sessionid = getCookie("connect.sid");
-  Get(`http://${host}/api/trackindexsave?ti=${track_index}&session?=${sessionid}`);
+  let sessionid = getCookie("connect.sid")
+  let k = Get(`http://${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
+  //console.log(k);
   
   curr_track.load();
 

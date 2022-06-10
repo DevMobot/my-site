@@ -23,7 +23,10 @@ app.use(cookieParser());
 app.use(session({
     secret: "mann-mohit-cyberaxy-mobot",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: false
+    }
 }));
 
 app.use("/", HomeRouter); // HOME ROUTES
