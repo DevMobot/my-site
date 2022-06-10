@@ -23,7 +23,7 @@ body {
     height: 250px;
     width: 250px;
     background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-    background-size: contain; 
+    background-size: cover;
     border-radius: 15%;
 } 
 .now-playing {
@@ -136,6 +136,7 @@ ol {
     font-weight: bold;
     padding: 2px 0px 0px;
     border-color: black;
+    cursor: pointer;
 }
 .exit-button-container {
     padding: 10px;
