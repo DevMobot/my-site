@@ -9,7 +9,7 @@ const app = express();
 
 const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
 module.exports.port = port;
-module.exports.host = "localhost"+port;
+module.exports.host = "localhost:"+port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");
