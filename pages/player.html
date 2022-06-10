@@ -5,16 +5,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport", content="width=device-width, initial-scale=1.0" />
   <!-- Load FontAwesome icons -->
-  <link rel="stylesheet"
-        href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
   <!-- Load the custom CSS style file -->
+  <link rel="stylesheet" type="text/css" href="css/alertbox.css">
   <link rel="stylesheet" type="text/css" href="css/player.css">
+
 </head>
 <body>
   <div class="player">
- 
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+      <div>
+        <div id="dialogboxhead"></div>
+        <div id="dialogboxbody"></div>
+        <div id="dialogboxfoot"></div>
+      </div>
+    </div>
+
     <!-- Define the section for displaying details -->
     <div class="details">
       <div class="now-playing">PLAYING x OF y</div>
@@ -59,5 +67,9 @@
   </div>
   <!-- Load the main script for the player -->
   <script src="js/player.js"></script>
+  <script src="js/alert.js"></script>
+  <script>
+    Alert.render("KKKK");
+  </script>
 </body>
 </html>

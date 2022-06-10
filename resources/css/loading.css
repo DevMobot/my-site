@@ -1,0 +1,10 @@
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: rgb(86, 34, 146);
+	width: 100%;
+	z-index: 10;
+}
