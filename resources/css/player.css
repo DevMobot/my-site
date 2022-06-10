@@ -25,6 +25,8 @@ body {
     background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
     background-size: cover;
     border-radius: 15%;
+    background-repeat: no-repeat;
+    background-position: center center;
 } 
 .now-playing {
     font-size: 1rem;
