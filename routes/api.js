@@ -10,11 +10,11 @@ const config = require("../config.js");
 const host = require("../server.js").host;
 
 router.get('/getTracks',function(req, res) {
-    res.send(req.session.tracks);
+    res.send(req.session.tracks || []);
     //console.log(req.session.tracks)
 });
 router.get('/trackindexsave', function getSessionViaQuerystring(req, res, next) {
-    var sessionId = req.query.sessionId;
+    var sessionId = req.query.session;
     if (!sessionId) return res.sendStatus(401); // Or whatever
   
     // Trick the session middleware that you have the cookie;
@@ -110,7 +110,8 @@ router.get('/ytp', async (req, res) => {
                 videoId: `${v.videoId}`
             });
         })
-
+        
+        
         res.redirect('http://'+host+'/player');
 
     } catch (e) {

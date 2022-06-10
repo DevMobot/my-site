@@ -1,6 +1,6 @@
 body {
-    background-color: #333333;
-  
+    background-color: #876488;
+    
     /* Smoothly transition the background color */
     transition: background-color .5s;
 } 
@@ -110,7 +110,7 @@ i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
     left: 0;
     right: 0;
     margin-top: 2%;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: monospace;
     justify-content: center;
 }
 li {

@@ -24,6 +24,6 @@ const removeDir = function(path) {
 }
 const clear = () => {
     removeDir(path.join(__dirname, "/resources/audios/cache"));
-    fs.mkdirSync(path.join(__dirname, "/resources/audios/", "cache"));
+    fs.mkdirSync(path.join(__dirname, "/resources/audios/cache"));
 }
 module.exports = clear;
