@@ -26,12 +26,8 @@ router.get('/getTracks',function(req, res) {
 
 router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next) {
     var sessionId = req.query.session;
-    if (!sessionId) return res.sendStatus(401); // Or whatever
-  
-    // Trick the session middleware that you have the cookie;
-    // Make sure you configure the cookie name, and set 'secure' to false
-    // in https://github.com/expressjs/session#cookie-options
-    req.cookies['connect.sid'] = req.query.session;
+    if (!sessionId) return res.sendStatus(401); 
+    req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
     next();
 }, (req, res) => {
     let index = req.query.ti;
@@ -39,7 +35,14 @@ router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next)
     //console.log(index + " k32")
     res.send("k")
 })
-
+router.get("/getindex", function getSessionViaQuerystring (req, res, next) {
+    var sessionId = req.query.session;
+    if (!sessionId) return res.sendStatus(401); 
+    req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
+    next();
+}, (req, res) => {
+    res.send(req.session.track_index+"" || "0");
+})
 router.get("/seeking", (req, res) => {
     //console.log(req.session.disableSeeking);
     if (req.session.disableSeeking) res.send("yes");

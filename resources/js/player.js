@@ -12,10 +12,10 @@ let volume_slider = document.querySelector(".volume_slider");
 let curr_time = document.querySelector(".current-time");
 let total_duration = document.querySelector(".total-duration");
 
-let track_index = 0;
 let isPlaying = false;
 let updateTimer;
 let seeker = true;
+
 const host = location.host;
 
 // Create new audio element
@@ -65,6 +65,7 @@ const media = (title, artist, album, img) => {
   }
 }
 // Define the tracks that have to be play"ed
+let track_index = parseInt(Get("http://"+host+"/api/getindex?session="+getCookie("connect.sid")));
 let track_list = JSON.parse(Get("http://"+host+"/api/getTracks"));
 
 function random_bg_color() {
