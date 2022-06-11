@@ -14,7 +14,7 @@
 	border-radius: 10px; 
 	width: 350px;
 	z-index: 10;
-	margin-top: 20%;
+	margin-top: 100%;
 }
 #dialogbox > div{
 	background: #212; 
@@ -28,7 +28,8 @@
 	color: #fff; 
 	margin-inline: 10px;
 }
-#dialogbox > div > #dialogboxbody{  
+#dialogbox > div > #dialogboxbody{
+	margin-top: 10px;
 	padding: 0;
 	margin-inline: 15px;
 	color: #f2f2f2;

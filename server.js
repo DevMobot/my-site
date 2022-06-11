@@ -7,9 +7,9 @@ const config = require("./config.js");
 
 const app = express();
 
-const port = process.env.PORT || 3000; // GET PORT TO LISTEN ON
+const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
 module.exports.port = port;
-module.exports.host = "localhost:"+port;
+module.exports.host = "mann-mohit.herokuapp.com"//+port;
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");
