@@ -13,7 +13,14 @@ router.get("/", (req, res) => {
     res.send("OK");
 })
 router.get('/getTracks',function(req, res) {
-    res.send(req.session.tracks || []);
+    const defTracks = [{
+        name: "L's Ideology",
+        artist: "DeathNote",
+        path: "../audios/ls-ideology.mp3",
+        image: "../images/art.png",
+        videoId: "P2OA4mQ3mkc"
+    }]
+    res.send(req.session.tracks || defTracks);
     //console.log(req.session.tracks)
 });
 

@@ -15,7 +15,7 @@ let total_duration = document.querySelector(".total-duration");
 let track_index = 0;
 let isPlaying = false;
 let updateTimer;
-
+let seeker = true;
 const host = location.host;
 
 // Create new audio element
@@ -52,7 +52,6 @@ if (mobileCheck()) {
   track_name.style.fontSize = "1.5rem";
   track_artist.style.fontSize = "1rem";
 }
-
 const media = (title, artist, album, img) => {
   if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
@@ -65,7 +64,6 @@ const media = (title, artist, album, img) => {
       });
   }
 }
-
 // Define the tracks that have to be play"ed
 let track_list = JSON.parse(Get("http://"+host+"/api/getTracks"));
 
@@ -82,6 +80,46 @@ function random_bg_color() {
   // Set the background to that color
   document.body.style.background = bgColor;
 }
+
+function resetValues() {
+  curr_time.textContent = "00:00";
+  total_duration.textContent = "00:00";
+  seek_slider.value = 0;
+}
+
+// Load the first track in the tracklist
+
+function nextTrack() {
+  if (track_index < track_list.length - 1)
+    track_index += 1;
+  else track_index = 0;
+  loadTrack(track_index);
+  playTrack();
+}
+
+function prevTrack() {
+  if (track_index > 0)
+    track_index -= 1;
+  else track_index = track_list.length;
+  loadTrack(track_index);
+  playTrack();
+}
+
+let emptyFunc = () => { return };
+const rateLimit = () => {
+  next_btn.style.color = "grey";
+  prev_btn.style.color = "grey";
+  next_btn.onclick = emptyFunc;
+  prev_btn.onclick = emptyFunc;
+  setTimeout(() => {
+    next_btn.style.color = "black";
+    prev_btn.style.color = "black";
+    next_btn.onclick = nextTrack;
+    prev_btn.onclick = prevTrack;
+
+  }, 2000)
+}
+//------------------------------------------------------------------------------------------------
 
 function loadTrack(track_index) {
   clearInterval(updateTimer);
@@ -102,21 +140,15 @@ function loadTrack(track_index) {
   if (mobileCheck()) track_name.textContent = track_list[track_index].name.substring(0, 30);
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
-  media(track_list[track_index].name.substring(0, 30), track_list[track_index].artist, "YouTube", "../images/art.png");
+  media(track_list[track_index].name.substring(0, 45), track_list[track_index].artist, "YouTube", track_list[track_index].image);
+  rateLimit();
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
   //random_bg_color();
 }
-
-function resetValues() {
-  curr_time.textContent = "00:00";
-  total_duration.textContent = "00:00";
-  seek_slider.value = 0;
-}
-
-// Load the first track in the tracklist
 loadTrack(track_index);
+//------------------------------------------------------------------------------------------------
 
 function playpauseTrack() {
   if (!isPlaying) playTrack();
@@ -133,22 +165,6 @@ function pauseTrack() {
   curr_track.pause();
   isPlaying = false;
   playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
-}
-
-function nextTrack() {
-  if (track_index < track_list.length - 1)
-    track_index += 1;
-  else track_index = 0;
-  loadTrack(track_index);
-  playTrack();
-}
-
-function prevTrack() {
-  if (track_index > 0)
-    track_index -= 1;
-  else track_index = track_list.length;
-  loadTrack(track_index);
-  playTrack();
 }
 
 function seekTo() {
@@ -188,6 +204,7 @@ const noSeek = () => {
   if (noSeeking == "yes") {
     seek_slider.style.display = "none";
     total_duration.style.display = "none";
+    seeker = false;
   } else return;
 }
 noSeek();
