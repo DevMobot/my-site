@@ -1,4 +1,4 @@
-#dialogoverlay{
+#dialogOverlayForAlert{
 	display: none;
 	opacity: .7;
 	position: fixed;
@@ -6,18 +6,27 @@
 	left: 0px;
 	background: #FFF;
 	width: 100%;
+	height: 100%;
+	bottom: 0;
 	z-index: 10;
 }
 #dialogbox{
 	display: none;
 	background: #000;
 	border-radius: 10px; 
-	width: 350px;
+	width: 300px;
 	z-index: 10;
-	margin-top: 250px;
+	margin-top: 80px;
+	position: absolute; 
+    align-items: center;
+    justify-content: center;
+	position: center center;
+	margin-left: auto;
+	margin-right: auto;
+
 }
 #dialogbox > div{
-	background: #212; 
+	background: rgb(112, 76, 112); 
 	border-radius: 5px;
 	margin:5px; 
 }

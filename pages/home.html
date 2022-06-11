@@ -4,12 +4,22 @@
 		<meta name="viewport", content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet", href="css/home.css">
 		<link rel="stylesheet", href="css/loading.css">
+		<link rel="stylesheet", href="css/alertBox.css">
 		<link rel="icon" type="image/x-icon" href="/images/icon.png">
 
 		<link rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css">
 		<title>YT Player</title>
 	</head>
 	<body>
+		<div id="dialogOverlayForAlert"></div>
+		<div id="dialogbox">
+		  <div>
+			<div id="dialogboxhead"></div>
+			<div id="dialogboxbody"></div>
+			<div id="dialogboxfoot"></div>
+		  </div>
+		</div>
+		
 		<div id="container">
 			<div id="dialogoverlay"></div>
 			<div class="loader" id="loader">
@@ -21,7 +31,7 @@
 			<h1><i class="fa-brands fa-youtube"></i> YouTube Music Player</h1>
 			<div class="form_container">
 				<form action="/api/ytp" method="GET">
-					<p>Enter Playlist link to play</p>
+					<p>Enter Playlist link to play <br> or <br> Choose a playlist below</p>
 					<input id="playlist_input" type="text" name="playlistURL" required> <br>
 					<div id="checkBox1">
 						<input id="disableSeek" type="checkbox" name="disableSeeking" value="true">
@@ -30,8 +40,22 @@
 					<button class="play-button" type="submit" onclick="loadingScreen.render()">Play</button> <br>
 				</form>
 			</div>
+			<div class="lists">
+				<ul class="nav">
+					<li onclick="Alert.render('ok')">k</li>	
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+					<li>k2</li>
+				</ul>
+			</div>
 		</div>
 		<script src="js/home.js"></script>
+		<script src="js/alert.js"></script>
 		<script src="js/loading.js"></script>
 		<script>
 			//loadingScreen.render()

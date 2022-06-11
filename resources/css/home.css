@@ -32,11 +32,9 @@ form {
     background-color: #232323;
     border-radius: 10px;
     place-items: center;
-    padding: 40px;
+    padding: 30px 0;
     border: 2px dashed #C4302B;
-}
-form {
-    font-size: 18px;
+    font-size: x-large;
 }
 #playlist_input {
     width: 260px;
@@ -49,11 +47,27 @@ form {
 .disableSeekLabel {
     font-size: 15px;
 }
-
 .container {
     padding: 0px 20px 20px;
     margin-left: 3%;
     margin-right: 3%;
     background-color: #232323;
     border-radius: 10px;
+}
+ul.nav {
+    padding-inline: 0px;
+    background-color: grey;
+    text-align: center;
+}
+ul.nav > li {
+    display: inline-block;
+    padding: 60px 60px;
+    color: white;
+}
+ul.nav > li:hover {
+    background-color: #000;
+}
+ul.nav > li > a {
+    color: white;
+    text-decoration: none;
 }
