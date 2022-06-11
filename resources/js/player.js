@@ -53,6 +53,19 @@ if (mobileCheck()) {
   track_artist.style.fontSize = "1rem";
 }
 
+const media = (title, artist, album, img) => {
+  if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: title,
+        artist: artist,
+        album: album,
+        artwork: [
+          { src: img,   type: 'image/png' }
+        ]
+      });
+  }
+}
+
 // Define the tracks that have to be play"ed
 let track_list = JSON.parse(Get("http://"+host+"/api/getTracks"));
 
@@ -88,6 +101,8 @@ function loadTrack(track_index) {
   track_artist.textContent = track_list[track_index].artist;
   if (mobileCheck()) track_name.textContent = track_list[track_index].name.substring(0, 30);
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
+
+  media(track_list[track_index].name.substring(0, 30), track_list[track_index].artist, "YouTube", "../images/art.png");
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
@@ -177,3 +192,12 @@ const noSeek = () => {
 }
 noSeek();
 //songList();
+
+if ('mediaSession' in navigator) {
+  navigator.mediaSession.setActionHandler('previoustrack', function() { 
+    prevTrack()
+  });
+  navigator.mediaSession.setActionHandler('nexttrack', function() { 
+    nextTrack()
+  });
+}
