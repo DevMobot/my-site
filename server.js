@@ -43,4 +43,8 @@ var listener = app.listen(port, () => {
     config.set("port", listener.address().port);
     config.set("host", `localhost:${listener.address().port}`);
 })
+
+if (!fs.existsSync(path.join(__dirname, "/resources/audios"))) fs.mkdirSync(path.join(__dirname, "/resources/audios"));
+if (!fs.existsSync(path.join(__dirname, "/resources/audios/cache"))) fs.mkdirSync(path.join(__dirname, "/resources/audios/cache"));
+
 //-----------------------------------------------
