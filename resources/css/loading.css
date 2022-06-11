@@ -1,6 +1,6 @@
 #dialogoverlay{
 	display: none;
-	opacity: .8;
+	opacity: 1;
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -15,9 +15,10 @@
 	border-radius: 50%;
 	align-self: center;
 	z-index: 10;
-	position: relative;
-	padding-inline: 45%;
-	margin-top: 100px;
+	position:relative;
+	margin-top: 50%;
+	margin-left: auto;
+	margin-right: auto;
 }
 .circle {
 	background: red;
