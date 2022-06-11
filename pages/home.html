@@ -4,7 +4,7 @@
 		<meta name="viewport", content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet", href="css/home.css">
 		<link rel="stylesheet", href="css/loading.css">
-		<link rel="stylesheet", href="css/alertBox.css">
+		<link rel="stylesheet", href="css/playlistInfoBox.css">
 		<link rel="icon" type="image/x-icon" href="/images/icon.png">
 
 		<link rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css">
@@ -13,13 +13,13 @@
 	<body>
 		<div id="dialogOverlayForAlert"></div>
 		<div id="dialogbox">
-		  <div>
+		  <div id="dialogbox-div">
 			<div id="dialogboxhead"></div>
 			<div id="dialogboxbody"></div>
 			<div id="dialogboxfoot"></div>
 		  </div>
 		</div>
-		
+
 		<div id="container">
 			<div id="dialogoverlay"></div>
 			<div class="loader" id="loader">
@@ -42,7 +42,7 @@
 			</div>
 			<div class="lists">
 				<ul class="nav">
-					<li onclick="Alert.render('ok')">k</li>	
+					<li onclick="playlist1()">k</li>	
 					<li>k2</li>
 					<li>k2</li>
 					<li>k2</li>
@@ -58,7 +58,10 @@
 		<script src="js/alert.js"></script>
 		<script src="js/loading.js"></script>
 		<script>
-			//loadingScreen.render()
+			const playlist1 = () => {
+
+				Alert.renderPlaylistInfo('PlayList: ', 'KKKKKK', '/player', 'https://youtube.com', 'https://wallpaperaccess.com/full/4132790.jpg')
+			}
 		</script>
 	</body>
 </html> 

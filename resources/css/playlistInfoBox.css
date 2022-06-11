@@ -10,18 +10,6 @@
 	bottom: 0;
 	z-index: 10;
 }
-#dialogOverlayForPl {
-	display: none;
-	opacity: 1;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	background: #212121;
-	width: 100%;
-	height: 100%;
-	bottom: 0;
-	z-index: 10;
-}
 #dialogbox{
 	display: none;
 	background: #232323;
@@ -35,12 +23,15 @@
 	position: center center;
 	margin-left: auto;
 	margin-right: auto;
-
 }
 #dialogbox > div{
 	background: #2c2f33; 
 	border-radius: 5px;
-	margin:5px; 
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 #dialogbox > div > #dialogboxhead{ 
 	font-size: 18px;
@@ -59,11 +50,17 @@
 #dialogbox > div > #dialogboxfoot{
 	padding: 8px; 
 	text-align: center;
+	bottom: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
 }
 #alertboxButton {
+	opacity: 1;
     background: #23272a;
 	color: #ffffff;
 	padding-inline: 30px;
 	border-color: black;
 	border-radius: 5px;
+	margin-bottom: 13px;
 }
