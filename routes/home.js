@@ -18,7 +18,7 @@ router.get("/exit_player", (req, res) => {
     req.session.track_index = 0;
     req.session.tracks = [];
     clear_cache();
-    res.redirect("/");
+    res.sendFile(path.join(__dirname, "..", "pages/exit_player.html"));
 })
 
 module.exports = router;

@@ -39,7 +39,12 @@ form {
     font-size: 18px;
 }
 #playlist_input {
-    padding: 5px 50px;
+    width: 260px;
+    height: 20px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    background: #afafaf;
+    border: 2px solid dimgrey;
 }
 .disableSeekLabel {
     font-size: 15px;

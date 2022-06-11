@@ -7,7 +7,7 @@ const deleteFile = require('../deleteFile.js');
 const fs = require('fs');
 
 const config = require("../config.js");
-const host = require("../server.js").host;
+let host = require("../server.js").host;
 
 router.get("/", (req, res) => {
     res.send("OK");
@@ -51,7 +51,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     //console.log("KKK -49 API.JS")
     next();
 }, async (req, res) => {
-	//host = config.get('host');
+    host = req.get('host');
 
     const vID = req.query.vID;
     
@@ -102,6 +102,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
 })
 router.get('/ytp', async (req, res) => {
     //host = config.get('host');
+    host = req.get('host');
 
     try {
         const playlistURL = req.query.playlistURL;

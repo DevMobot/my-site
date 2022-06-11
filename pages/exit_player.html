@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wait</title>
+</head>
+<body>
+    <p>This should not take long, please reload if stuck.</p>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+	        const d = new Date();
+	        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	        let expires = "expires="+ d.toUTCString();
+	        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        
+        setCookie("noSeek", "no", 1);
+        
+        window.location.replace(`/`)
+        
+    </script>
+</body>
+</html>
