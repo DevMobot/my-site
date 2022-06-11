@@ -5,9 +5,11 @@ function loading(){
         var dialogoverlay = document.getElementById('dialogoverlay');
         dialogoverlay.style.display = "block";
         dialogoverlay.style.height = winH+"px";
+        document.getElementById("loader").style.display = "flex";
     }
     this.ok = function(){
         document.getElementById('dialogoverlay').style.display = "none";
+        document.getElementById("loader").style.display = "none";
     }
 }
 

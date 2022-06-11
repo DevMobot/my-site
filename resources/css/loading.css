@@ -4,7 +4,46 @@
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	background: rgb(86, 34, 146);
+	background: #212121;
 	width: 100%;
 	z-index: 10;
+}
+.loader {
+	display: none;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	align-self: center;
+	z-index: 10;
+	position: relative;
+	padding-inline: 45%;
+	margin-top: 100px;
+}
+.circle {
+	background: red;
+	width: 20px;
+	height: 20px;
+	margin: 0 4px;
+	border-radius: 50%;
+	animation: animate 2s infinite linear;
+	z-index: 10;
+}
+.circle:nth-child(1) {
+	animation-delay: 0.5s;
+}
+.circle:nth-child(2) {
+	animation-delay: 1s;
+}
+.circle:nth-child(3) {
+	animation-delay: 1.5s;
+}
+@keyframes animate {
+	0%,
+	100% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
 }
