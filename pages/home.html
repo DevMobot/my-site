@@ -19,7 +19,6 @@
 			<div id="dialogboxfoot"></div>
 		  </div>
 		</div>
-
 		<div id="container">
 			<div id="dialogoverlay"></div>
 			<div class="loader" id="loader">
@@ -42,16 +41,10 @@
 			</div>
 			<div class="lists">
 				<ul class="nav">
-					<li onclick="playlist1()">k</li>	
+					<li onclick="playlist1()">k0</li>
+					<li>k1</li>
 					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
-					<li>k2</li>
+					<li>k3</li>
 				</ul>
 			</div>
 		</div>
@@ -60,8 +53,7 @@
 		<script src="js/loading.js"></script>
 		<script>
 			const playlist1 = () => {
-
-				Alert.renderPlaylistInfo('PlayList: ', 'KKKKKK', '/player', 'https://youtube.com', 'https://wallpaperaccess.com/full/4132790.jpg')
+				Alert.renderPlaylistInfo("k", "k", "k", "k", "data:image/jpeg;base64,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")
 			}
 		</script>
 	</body>

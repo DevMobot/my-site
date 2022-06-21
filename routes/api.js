@@ -12,6 +12,10 @@ let host = require("../server.js").host;
 router.get("/", (req, res) => {
     res.send("OK");
 })
+router.get("/log", (req, res) => {
+    console.log(req.query.msg);
+    res.send("k");
+})
 router.get('/getTracks',function(req, res) {
     const defTracks = [{
         name: "L's Ideology",
