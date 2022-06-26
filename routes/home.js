@@ -20,5 +20,10 @@ router.get("/exit_player", (req, res) => {
     clear_cache();
     res.sendFile(path.join(__dirname, "..", "pages/exit_player.html"));
 })
-
+router.get("/list", (req, res) => {
+    const listid = req.query.id;
+    if (!listid) return res.send("ERROR NO ID");
+    const listurl = encodeURI("https://youtube.com/playlist?list=" + listid);
+    res.redirect("/api/ytp?playlistURL="+listurl+"&disableSeeking=false");
+})
 module.exports = router;

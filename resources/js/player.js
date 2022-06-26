@@ -36,6 +36,7 @@ function getCookie(cname) {
   }
   return "";
 }
+
 function Get(yourUrl){
   var Httpreq = new XMLHttpRequest(); // a new request
   Httpreq.open("GET",yourUrl,false);
@@ -112,13 +113,29 @@ const rateLimit = () => {
   prev_btn.style.color = "grey";
   next_btn.onclick = emptyFunc;
   prev_btn.onclick = emptyFunc;
-  setTimeout(() => {
-    next_btn.style.color = "black";
-    prev_btn.style.color = "black";
+  playpause_btn.onclick = emptyFunc;
+  playpause_btn.style.color = "grey";
+  /*
+  const l = setTimeout(() => {
     next_btn.onclick = nextTrack;
     prev_btn.onclick = prevTrack;
-
-  }, 2000)
+    next_btn.style.color = "black";
+    prev_btn.style.color = "black";
+    //clearInterval(checkForNextTrack);
+  }, 3500);
+  */
+  
+  setTimeout(() => {
+    next_btn.onclick = nextTrack;
+    prev_btn.onclick = prevTrack;
+    next_btn.style.color = "black";
+    prev_btn.style.color = "black";
+    playpause_btn.onclick = playpauseTrack;
+    playpause_btn.style.color = "black";
+    //console.log("K2")
+    //clearInterval(checkForNextTrack);
+    
+  }, 4500) //*/
 }
 //------------------------------------------------------------------------------------------------
 

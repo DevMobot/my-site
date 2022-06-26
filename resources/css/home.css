@@ -56,16 +56,22 @@ form {
 }
 ul.nav {
     padding-inline: 0px;
-    background-color: grey;
+    background-color: #3a3b3c;
     text-align: center;
+    justify-content: center;
+    border-radius: 10px;
 }
 ul.nav > li {
     display: inline-block;
-    padding: 60px 60px;
+    width: 130px;
+    line-height: 120px;
+    margin: 3px;
+    border-radius: 10px;
     color: white;
+    text-align: center;
 }
 ul.nav > li:hover {
-    background-color: #000;
+    background-color: #242526;
 }
 ul.nav > li > a {
     color: white;

@@ -4,12 +4,14 @@ const path = require("path");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const config = require("./config.js");
+const os = require("os");
 
 const app = express();
 
-const port = process.env.PORT || 80; // GET PORT TO LISTEN ON
+var port = process.env.PORT || 80; // GET PORT TO LISTEN ON
+if (os.platform() == "android") port = 3000;
 module.exports.port = port;
-module.exports.host = "mann-mohit.herokuapp.com"//+port; //mann-mohit.herokuapp.com
+module.exports.host = "mann-mohit.herokuapp.com";//+port; //mann-mohit.herokuapp.com
 
 const HomeRouter = require("./routes/home.js"); // INCLUDE HOME ROUTER
 const ApiRouter = require("./routes/api.js");

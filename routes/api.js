@@ -16,7 +16,7 @@ router.get("/log", (req, res) => {
     console.log(req.query.msg);
     res.send("k");
 })
-router.get('/getTracks',function(req, res) {
+router.get('/getTracks', function(req, res) {
     const defTracks = [{
         name: "L's Ideology",
         artist: "DeathNote",
@@ -26,6 +26,15 @@ router.get('/getTracks',function(req, res) {
     }]
     res.send(req.session.tracks || defTracks);
     //console.log(req.session.tracks)
+});
+router.get("/nextReady", function getSessionViaQuerystring (req, res, next) {
+    var sessionId = req.query.session;
+    if (!sessionId) return res.sendStatus(401); 
+    req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
+    next();
+}, (req, res) => {
+    if (req.session.nextReady || req.session.noSeek) return res.send("true");
+    else return res.send("false");
 });
 
 router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next) {
@@ -49,6 +58,8 @@ router.get("/getindex", function getSessionViaQuerystring (req, res, next) {
 })
 router.get("/seeking", (req, res) => {
     //console.log(req.session.disableSeeking);
+    console.log(req.session.nextReady);
+    console.log(req.session.noSeek);
     if (req.session.disableSeeking) res.send("yes");
     else res.send("no");
 })
@@ -90,7 +101,9 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
                     quality: "highestaudio"
-                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3'))).on('finish', () => {
+                    return;
+                })
                 //console.log("KKK -72 API.JS")
 
             }
@@ -105,7 +118,9 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
                     quality: "highestaudio"
-                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3')));
+                }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+nextTrackVID+'.mp3'))).on("finish", () => {
+                    return;
+                });
                 //console.log("KKK -92 API.JS")
 
             }
@@ -137,7 +152,7 @@ router.get('/ytp', async (req, res) => {
 
 		req.session.track_index = 0;
         req.session.tracks = [];
-
+        
         videos.forEach(async v => {
             let t = v.title.replace(/[^\w\s]/gi, '').split(/ +/).join(" ");
             if (t.length > 30) t.substring(0, 30);
@@ -157,6 +172,7 @@ router.get('/ytp', async (req, res) => {
             req.session.noSeek = true;
             res.redirect('http://'+host+'/player');
         }else {
+            req.session.noSeek = false;
             ytdl(`https://www.youtube.com/watch?v=${videos[0].videoId}`, {
                 quality: "highestaudio"
             }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+videos[0].videoId+'.mp3'))).on("finish", () => {
