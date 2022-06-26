@@ -41,10 +41,10 @@
 			</div>
 			<div class="lists">
 				<ul class="nav">
-					<li onclick="playlist1()">My Jazz</li>
-					<li>Soft</li>
-					<li>Rock</li>
-					<li>OK</li>
+					<li onclick="playlist1()">Test list 1</li>
+					<li onclick="playlist2()">Test list 2</li>
+					<li onclick="playlist3()">Test list 3</li>
+					<li onclick="playlist4()">Test list 4</li>
 				</ul>
 			</div>
 			<footer>
@@ -57,11 +57,34 @@
 		<script src="js/alert.js"></script>
 		<script src="js/loading.js"></script>
 		<script>
+			
 			const playlist1 = () => {
-				let text = 'Artists: Marshmello, Alan Walker...';
-				let viewUrl = 'https://www.youtube.com/playlist?list=PLFp_J7y4fBg3lvNlcAobdrjyEn-QCxWAf';
-				let playUrl = 'http://'+ location.host+'/list?id=PLFp_J7y4fBg3lvNlcAobdrjyEn-QCxWAf';
-				Alert.playlistInfo(text, viewUrl, playUrl, 'MyJazz')
+				let id = "PLFp_J7y4fBg3lvNlcAobdrjyEn-QCxWAf"
+				let text = 'Songs: 27 <br>Artists: Billie Eilish, Marshmello, Alan Walker, Avicii, ...';
+				let viewUrl = 'https://www.youtube.com/playlist?list=' + id;
+				let playUrl = 'http://'+ location.host+'/list?id=' + id;
+				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 1')
+			}
+			const playlist2 = () => {
+				let id = "PLFp_J7y4fBg0glnkeaxIgW3sXp8gOedkI"
+				let text = 'Songs: 19 <br>Artists: Fall Out Boy, K-391, Marshmello, Alan Walker, ImagineDragons, ...';
+				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
+				let playUrl = 'http://'+ location.host+'/list?id=' +id;
+				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 2')
+			}
+			const playlist3 = () => {
+				let id = "PLugoFmzqrLstY8pA7SBjWreIQKJ7MNMgD"
+				let text = 'Songs: 86 <br>Artists: ImagineDragons, NEFFEX, Marshmello, Lil Nas X, RUSTAGE, ...';
+				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
+				let playUrl = 'http://'+ location.host+'/list?id=' +id;
+				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 3')
+			}
+			const playlist4 = () => {
+				let id = "PLFp_J7y4fBg0FafFXWR0u44Mz7GtBWGfE";
+				let text = 'Songs: 9 <br>Artists: DeathNote Artists';
+				let viewUrl = 'https://www.youtube.com/playlist?list=' + id;
+				let playUrl = 'http://'+ location.host+'/list?id=' + id;
+				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 4')
 			}
 		</script>
 	</body>
