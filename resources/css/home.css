@@ -77,3 +77,28 @@ ul.nav > li > a {
     color: white;
     text-decoration: none;
 }
+footer {
+    display: block;
+    background-color: #212121;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: monospace;
+    color: #afafaf;
+}
+footer > a {
+    text-decoration: none;
+    font-size: large;
+    color: #afafaf;
+}
+footer > a > span {
+    font-style: italic;
+    text-decoration: underline;
+}
+.author {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+.fa-up-right-from-square {
+    font-size: 9px;
+}
