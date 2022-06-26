@@ -163,11 +163,11 @@ function loadTrack(track_index) {
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
-
+  /*
   if ('mediaSession' in navigator) {
     navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
     navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
-  }
+  } */
   //random_bg_color();
 }
 loadTrack(track_index);
