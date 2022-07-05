@@ -59,17 +59,19 @@
         value="99" class="volume_slider" onchange="setVolume()">
       <i class="fa fa-volume-up"></i>
     </div>
-  </div>
-  <div class="exit-button-container">
-    <a href="/exit_player">
-      <button type="button" class="exit-button"> Exit Player </button>
-    </a>
-  </div>
+  </div> 
+  <!-- 
+    <div class="exit-button-container">
+      <a href="/exit_player">
+        <button type="button" class="exit-button"> Exit Player </button>
+      </a>
+    </div>
+  -->
   <!-- Load the main script for the player -->
   <script src="js/player.js"></script>
   <script src="js/alert.js"></script>
   <script>
-    Alert.render("▪ Please press the Exit Player button before leaving the site when you're done. It helps us keep the server clean.<br/><br/> ▪ Enjoy high quality ad free music with background playback support!", false);
+    Alert.render("▪ Player may get destroyed automatically if you pause songs for more than 30 minutes.<br><br>▪ Enjoy high quality ad free music with background playback support!", false);
     
   </script>
 </body>

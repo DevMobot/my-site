@@ -69,6 +69,7 @@ ul.nav > li {
     border-radius: 10px;
     color: white;
     text-align: center;
+    border: 1px grey solid;
 }
 ul.nav > li:hover {
     background-color: #242526;
