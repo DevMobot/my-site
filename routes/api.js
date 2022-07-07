@@ -24,6 +24,7 @@ router.get('/getTracks', function(req, res) {
         image: "../images/art.png",
         videoId: "P2OA4mQ3mkc"
     }]
+    if (!req.session.tracks) return res.send(defTracks);
     res.send(req.session.tracks || defTracks);
     //console.log(req.session.tracks)
 });

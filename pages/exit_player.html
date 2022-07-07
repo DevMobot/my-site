@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet", href="css/loading.css">
     <title>Wait</title>
 </head>
 <body>
-    <p>This should not take long, please reload if stuck.</p>
+    <div id="dialogoverlay"></div>
+    <div class="loader" id="loader">
+         <div class="circle"></div>
+         <div class="circle"></div>
+         <div class="circle"></div>
+    </div>
+    <script src="js/loading.js"></script>
     <script>
+        loadingScreen.render();
+        
         function setCookie(cname, cvalue, exdays) {
 	        const d = new Date();
 	        d.setTime(d.getTime() + (exdays*24*60*60*1000));

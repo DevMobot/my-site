@@ -63,6 +63,8 @@ const media = (title, artist, album, img) => {
           { src: img,   type: 'image/png' }
         ]
       });
+      navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
+      navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
   }
 }
 // Define the tracks that have to be play"ed
@@ -146,7 +148,6 @@ function loadTrack(track_index) {
 
   let sessionid = getCookie("connect.sid")
   let k = Get(`http://${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
-  //console.log(k);
   
   curr_track.load();
 

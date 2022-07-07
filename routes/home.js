@@ -8,7 +8,13 @@ const host = require("../server.js").host;
 router.get('/',function(req,res) {
     res.sendFile(path.join(__dirname, "..", "pages/home.html"));
 });
-router.get('/player', (req, res) => {
+router.get('/player', (req, res, next) => {
+    let index = req.query.index;
+    if (index) {
+        req.session.track_index = parseInt(index)-1;
+    }
+    next();
+},(req, res) => {
     res.sendFile(path.join(__dirname, "..", "pages/player.html"));
 })
 router.get('/stt', (req, res) => {
@@ -17,8 +23,11 @@ router.get('/stt', (req, res) => {
 router.get("/exit_player", (req, res) => {
     req.session.track_index = 0;
     req.session.tracks = [];
-    clear_cache();
     res.sendFile(path.join(__dirname, "..", "pages/exit_player.html"));
+})
+router.get("force_clear_cache", () => {
+    clear_cache();
+    res.send("OK");
 })
 router.get("/list", (req, res) => {
     const listid = req.query.id;
