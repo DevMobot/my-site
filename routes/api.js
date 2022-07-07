@@ -177,7 +177,7 @@ router.get('/ytp', async (req, res) => {
             ytdl(`https://www.youtube.com/watch?v=${videos[0].videoId}`, {
                 quality: "highestaudio"
             }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+videos[0].videoId+'.mp3'))).on("finish", () => {
-                res.redirect('http://'+host+'/player');
+                res.redirect(host+'/player');
             });   
         } 
         //res.redirect('http://'+host+'/player');
