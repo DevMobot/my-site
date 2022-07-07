@@ -25,14 +25,14 @@ router.get("/exit_player", (req, res) => {
     req.session.tracks = [];
     res.sendFile(path.join(__dirname, "..", "pages/exit_player.html"));
 })
-router.get("force_clear_cache", () => {
-    clear_cache();
-    res.send("OK");
-})
 router.get("/list", (req, res) => {
     const listid = req.query.id;
     if (!listid) return res.send("ERROR NO ID");
     const listurl = encodeURI("https://youtube.com/playlist?list=" + listid);
     res.redirect("/api/ytp?playlistURL="+listurl+"&disableSeeking=false");
+})
+router.get("/fcc", (req, res) => {
+    clear_cache();
+    res.redirect("/");
 })
 module.exports = router;

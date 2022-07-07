@@ -92,7 +92,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     	
     	res.sendFile(path.join(__dirname, "..", `/resources/audios/cache/${vID}.mp3`));
     	
-    	if (req.session.tracks.length > trackIndex) {
+    	if (req.session.tracks.length-1 > trackIndex) {
             let nextTrackVID = req.session.tracks[trackIndex+1].videoId;    
             //console.log("KKK -68 API.JS")
             //console.log(nextTrackVID +" nti");

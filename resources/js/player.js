@@ -16,6 +16,7 @@ let isPlaying = false;
 let updateTimer;
 let seeker = true;
 
+const host_conn = "http";
 const host = location.host;
 
 // Create new audio element
@@ -68,8 +69,8 @@ const media = (title, artist, album, img) => {
   }
 }
 // Define the tracks that have to be play"ed
-let track_index = parseInt(Get("http://"+host+"/api/getindex?session="+getCookie("connect.sid")));
-let track_list = JSON.parse(Get("http://"+host+"/api/getTracks"));
+let track_index = parseInt(Get(host_conn+"://"+host+"/api/getindex?session="+getCookie("connect.sid")));
+let track_list = JSON.parse(Get(host_conn+"://"+host+"/api/getTracks"));
 
 function random_bg_color() {
 
@@ -147,7 +148,7 @@ function loadTrack(track_index) {
   curr_track.src = track_list[track_index].path;
 
   let sessionid = getCookie("connect.sid")
-  let k = Get(`http://${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
+  let k = Get(`${host_conn}://${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
   
   curr_track.load();
 
