@@ -16,7 +16,7 @@ let isPlaying = false;
 let updateTimer;
 let seeker = true;
 
-const host_conn = "http";
+const host_conn = "https";
 const host = location.host;
 
 // Create new audio element
