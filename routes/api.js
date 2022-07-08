@@ -171,13 +171,13 @@ router.get('/ytp', async (req, res) => {
         if (disableSeeking === "true") {
             res.cookie("noSeek", "yes");
             req.session.noSeek = true;
-            res.redirect('http://'+host+'/player');
+            res.redirect('/player');
         }else {
             req.session.noSeek = false;
             ytdl(`https://www.youtube.com/watch?v=${videos[0].videoId}`, {
                 quality: "highestaudio"
             }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+videos[0].videoId+'.mp3'))).on("finish", () => {
-                res.redirect(host+'/player');
+                res.redirect('/player');
             });   
         } 
         //res.redirect('http://'+host+'/player');
