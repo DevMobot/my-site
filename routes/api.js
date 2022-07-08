@@ -34,8 +34,17 @@ router.get("/nextReady", function getSessionViaQuerystring (req, res, next) {
     req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
     next();
 }, (req, res) => {
+    /*
     if (req.session.nextReady || req.session.noSeek) return res.send("true");
     else return res.send("false");
+    */
+    	if (req.session.tracks[req.session.track_index+1]) {
+            let nextTrackVID = req.session.tracks[req.session.track_index+1].videoId; 
+            if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + nextTrackVID + ".mp3"))) return res.send("true");
+            else res.send("false");
+        } else if (req.session.track_index == req.session.tracks.length-1 && fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + req.session.tracks[0].videoId + ".mp3"))) return res.send("true");
+        else res.send("false"); 
+
 });
 
 router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next) {
@@ -114,7 +123,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     	//console.log('h')
     	ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 
-        if (req.session.tracks.length > trackIndex) {
+        if (req.session.tracks.length-1 > trackIndex) {
             let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
@@ -174,6 +183,8 @@ router.get('/ytp', async (req, res) => {
             res.redirect('/player');
         }else {
             req.session.noSeek = false;
+            if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + videos[0].videoId + ".mp4"))) return res.redirect("/player");
+
             ytdl(`https://www.youtube.com/watch?v=${videos[0].videoId}`, {
                 quality: "highestaudio"
             }).pipe(fs.createWriteStream(path.join(__dirname, "..", '/resources/audios/cache/'+videos[0].videoId+'.mp3'))).on("finish", () => {

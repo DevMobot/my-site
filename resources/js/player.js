@@ -16,7 +16,7 @@ let isPlaying = false;
 let updateTimer;
 let seeker = true;
 
-const host_conn = "https";
+const host_conn = location.protocol;
 const host = location.host;
 
 // Create new audio element
@@ -69,8 +69,8 @@ const media = (title, artist, album, img) => {
   }
 }
 // Define the tracks that have to be play"ed
-let track_index = parseInt(Get(host_conn+"://"+host+"/api/getindex?session="+getCookie("connect.sid")));
-let track_list = JSON.parse(Get(host_conn+"://"+host+"/api/getTracks"));
+let track_index = parseInt(Get(host_conn+"//"+host+"/api/getindex?session="+getCookie("connect.sid")));
+let track_list = JSON.parse(Get(host_conn+"//"+host+"/api/getTracks"));
 
 function random_bg_color() {
 
@@ -110,35 +110,32 @@ function prevTrack() {
   playTrack();
 }
 
-let emptyFunc = () => { return };
+//----------------------------------------------------------------------------
 const rateLimit = () => {
-  next_btn.style.color = "grey";
-  prev_btn.style.color = "grey";
-  next_btn.onclick = emptyFunc;
-  prev_btn.onclick = emptyFunc;
-  playpause_btn.onclick = emptyFunc;
-  playpause_btn.style.color = "grey";
-  /*
-  const l = setTimeout(() => {
-    next_btn.onclick = nextTrack;
-    prev_btn.onclick = prevTrack;
-    next_btn.style.color = "black";
-    prev_btn.style.color = "black";
-    //clearInterval(checkForNextTrack);
-  }, 3500);
-  */
+  let emptyFunc = () => { return };
+
+  let check = Get(host_conn+"//"+host+"/api/nextReady?session="+ getCookie("connect.sid"));
   
-  setTimeout(() => {
+  if (check == "true") {
     next_btn.onclick = nextTrack;
     prev_btn.onclick = prevTrack;
     next_btn.style.color = "black";
     prev_btn.style.color = "black";
-    playpause_btn.onclick = playpauseTrack;
-    playpause_btn.style.color = "black";
-    //console.log("K2")
-    //clearInterval(checkForNextTrack);
+  } else {
     
-  }, 4500) //*/
+    next_btn.style.color = "grey";
+    prev_btn.style.color = "grey";
+    next_btn.onclick = emptyFunc;
+    prev_btn.onclick = emptyFunc;
+    
+    setTimeout(() => {
+      next_btn.onclick = nextTrack;
+      prev_btn.onclick = prevTrack;
+      next_btn.style.color = "black";
+      prev_btn.style.color = "black";
+    }, 4500)
+
+  } 
 }
 //------------------------------------------------------------------------------------------------
 
@@ -148,7 +145,7 @@ function loadTrack(track_index) {
   curr_track.src = track_list[track_index].path;
 
   let sessionid = getCookie("connect.sid")
-  let k = Get(`${host_conn}://${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
+  let k = Get(`${host_conn}//${host}/api/trackindexsave?ti=${track_index}&session=${sessionid}`);
   
   curr_track.load();
 
