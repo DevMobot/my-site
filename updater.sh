@@ -7,6 +7,9 @@ rm -rf ./Site
 mkdir Site
 cd ~
 
+rm -rf my-site 
+git clone https://github.com/DevMobot/my-site
+
 cp -r ./my-site/pages ./storage/shared/Site/
 cp -r ./my-site/resources ./storage/shared/Site/
 cp -r ./my-site/routes ./storage/shared/Site/
