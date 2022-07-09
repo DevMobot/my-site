@@ -2,11 +2,36 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport", content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet", href="css/404.css">
-		<title>Page not found...</title>
+		<title>(404) Not Found...</title>
+		<style>
+			body {
+    			background-color: #3a3b3c;
+			}
+			code {
+    			font-size: 150%;
+			}
+			h1 {
+   		 		font-size: 180%;
+			}
+			.buttonRedirect {
+				background-color: #212121;
+				color: white;
+				border-radius: 8px;
+				border: black solid 2px;
+				text-align: center;
+				width: 100px;
+				height: 20px;
+				padding: 10px 60px;
+				margin: 20px 1px;
+			} 
+			a {
+				text-decoration: none;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Error Code 404: Page not found</h1>
         <code>The page you are looking for is not found. Make sure there are no spelling errors in the URL.</code>
+		<a href="/"><div class="buttonRedirect">Go Home</div></a>
 	</body>
 </html> 

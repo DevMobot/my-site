@@ -20,11 +20,7 @@ router.get('/',async function (req, res) {
 
         res.setHeader('Content-disposition', 'attachment; filename='+title+'.mp4');
 
-        const stream = await ytdl(videoURL,  {
-            highWaterMark: 33554432,
-        }).pipe(res);
-
-        res.send(`Downloading ${title}`)
+        const stream = await ytdl(videoURL).pipe(res);
 
     }).catch(e => {
         console.log("Could not download the video... \nError: " + e.message);
