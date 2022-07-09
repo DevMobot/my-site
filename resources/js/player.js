@@ -229,7 +229,7 @@ const noSeek = () => {
     seeker = false;
   } else return;
 }
-noSeek();
+noSeek(); 
 //songList();
 
 if ('mediaSession' in navigator) {

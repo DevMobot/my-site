@@ -12,11 +12,11 @@ let host = require("../server.js").host;
 router.get("/", (req, res) => {
     res.send("OK");
 })
-router.get("/log", (req, res) => {
+.get("/log", (req, res) => {
     console.log(req.query.msg);
     res.send("k");
 })
-router.get('/getTracks', function(req, res) {
+.get('/getTracks', function(req, res) {
     const defTracks = [{
         name: "L's Ideology",
         artist: "DeathNote",
@@ -24,30 +24,31 @@ router.get('/getTracks', function(req, res) {
         image: "../images/art.png",
         videoId: "P2OA4mQ3mkc"
     }]
-    if (!req.session.tracks) return res.send(defTracks);
+    if (!req.session.tracks) {
+        res.send(JSON.stringify(defTracks));
+        return;
+    }
     res.send(req.session.tracks || defTracks);
     //console.log(req.session.tracks)
-});
-router.get("/nextReady", function getSessionViaQuerystring (req, res, next) {
+})
+.get("/nextReady", function getSessionViaQuerystring (req, res, next) {
     var sessionId = req.query.session;
     if (!sessionId) return res.sendStatus(401); 
     req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
     next();
 }, (req, res) => {
-    /*
-    if (req.session.nextReady || req.session.noSeek) return res.send("true");
-    else return res.send("false");
-    */
-    	if (req.session.tracks[req.session.track_index+1]) {
-            let nextTrackVID = req.session.tracks[req.session.track_index+1].videoId; 
-            if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + nextTrackVID + ".mp3"))) return res.send("true");
-            else res.send("false");
-        } else if (req.session.track_index == req.session.tracks.length-1 && fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + req.session.tracks[0].videoId + ".mp3"))) return res.send("true");
-        else res.send("false"); 
 
-});
+    if (req.session.noSeek) return res.send ("true");
 
-router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next) {
+    if (req.session.tracks[req.session.track_index+1]) {
+        let nextTrackVID = req.session.tracks[req.session.track_index+1].videoId; 
+        if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + nextTrackVID + ".mp3"))) return res.send("true");
+        else res.send("false");
+    } else if (req.session.track_index == req.session.tracks.length-1 && fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + req.session.tracks[0].videoId + ".mp3"))) return res.send("true");
+    else res.send("false"); 
+
+})
+.get('/trackindexsave', function getSessionViaQuerystring (req, res, next) {
     var sessionId = req.query.session;
     if (!sessionId) return res.sendStatus(401); 
     req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
@@ -58,7 +59,7 @@ router.get('/trackindexsave', function getSessionViaQuerystring (req, res, next)
     //console.log(index + " k32")
     res.send("k")
 })
-router.get("/getindex", function getSessionViaQuerystring (req, res, next) {
+.get("/getindex", function getSessionViaQuerystring (req, res, next) {
     var sessionId = req.query.session;
     if (!sessionId) return res.sendStatus(401); 
     req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
@@ -66,15 +67,14 @@ router.get("/getindex", function getSessionViaQuerystring (req, res, next) {
 }, (req, res) => {
     res.send(req.session.track_index+"" || "0");
 })
-router.get("/seeking", (req, res) => {
+.get("/seeking", (req, res) => {
     //console.log(req.session.disableSeeking);
     console.log(req.session.nextReady);
     console.log(req.session.noSeek);
     if (req.session.disableSeeking) res.send("yes");
     else res.send("no");
 })
-
-router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
+.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     var sessionId = req.query.session;
     //console.log(sessionId);
     if (!sessionId) return res.sendStatus(401); // Or whatever
@@ -102,12 +102,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     	res.sendFile(path.join(__dirname, "..", `/resources/audios/cache/${vID}.mp3`));
     	
     	if (req.session.tracks.length-1 > trackIndex) {
-            let nextTrackVID = req.session.tracks[trackIndex+1].videoId;    
-            //console.log("KKK -68 API.JS")
-            //console.log(nextTrackVID +" nti");
-            //console.log(trackIndex+" ti");
-            //console.log(!req.session.noSeek+" k");
-
+            let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
                     quality: "highestaudio"
@@ -139,7 +134,7 @@ router.get('/ytstream', function getSessionViaQuerystring (req, res, next) {
     }
     //ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 })
-router.get('/ytp', async (req, res) => {
+.get('/ytp', async (req, res) => {
     //host = config.get('host');
     host = req.get('host');
 
@@ -199,5 +194,6 @@ router.get('/ytp', async (req, res) => {
     }
     
 })
+
 
 module.exports = router;

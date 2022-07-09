@@ -31,10 +31,10 @@
 			<div class="form_container">
 				<form action="/api/ytp" method="GET">
 					<p>Enter Playlist link to play <br> or <br> Choose a playlist below</p>
-					<input id="playlist_input" type="url" name="playlistURL" required> <br>
+					<input id="playlist_input" type="url" placeholder="Paste YT Playlist URL here" name="playlistURL" required> <br>
 					<div id="checkBox1">
 						<input id="disableSeek" type="checkbox" name="disableSeeking" value="true">
-						<label class="disableSeekLabel" for="disableSeek">Disable Seeker? (recommended)</label>
+						<label class="disableSeekLabel" for="disableSeek">Disable Seek bar? (recommended)</label>
 					</div> <br/>
 					<button class="play-button" type="submit" onclick="loadingScreen.render()">Play</button> <br>
 				</form>
@@ -60,31 +60,31 @@
 			
 			const playlist1 = () => {
 				let id = "PLFp_J7y4fBg3lvNlcAobdrjyEn-QCxWAf"
-				let text = 'Songs: 30+ <br>Artists: Marshmello, Alan Walker, Avicii, Billie Eilish, ...';
+				let text = 'Songs: 30+ <br>Artists: Marshmello, One Direction, Alan Walker, Ed Sheeran, ...';
 				let viewUrl = 'https://www.youtube.com/playlist?list=' + id;
 				let playUrl = 'http://'+ location.host+'/list?id=' + id;
 				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 1')
 			}
 			const playlist2 = () => {
 				let id = "PLFp_J7y4fBg0glnkeaxIgW3sXp8gOedkI"
-				let text = 'Songs: 30+ <br>Artists: Marshmello, ImagineDragons, NEFFEX, Lil Nas X, Fall Out Boy, grandson, Alan Walker, ...';
+				let text = 'Songs: 30+ <br>Artists: NEFFEX, Marshmello, ImagineDragons, Lil Nas X, Fall Out Boy, ...';
 				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
 				let playUrl = 'http://'+ location.host+'/list?id=' +id;
 				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 2')
 			}
 			const playlist3 = () => {
-				let id = "PLugoFmzqrLstY8pA7SBjWreIQKJ7MNMgD"
-				let text = 'Songs: 85+ <br>Artists: ImagineDragons, NEFFEX, Marshmello, Lil Nas X, RUSTAGE, ...';
-				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
-				let playUrl = 'http://'+ location.host+'/list?id=' +id;
-				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 3')
-			}
-			const playlist4 = () => {
 				let id = "PLFp_J7y4fBg0FafFXWR0u44Mz7GtBWGfE";
 				let text = 'Songs: 10+ <br>Artists: DeathNote Artists';
 				let viewUrl = 'https://www.youtube.com/playlist?list=' + id;
 				let playUrl = 'http://'+ location.host+'/list?id=' + id;
 				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 4')
+			}
+			const playlist4 = () => {
+				let id = "PLugoFmzqrLstY8pA7SBjWreIQKJ7MNMgD"
+				let text = 'Songs: 85+ <br>Artists: ImagineDragons, NEFFEX, Marshmello, Lil Nas X, RUSTAGE, ...';
+				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
+				let playUrl = 'http://'+ location.host+'/list?id=' +id;
+				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 3')
 			}
 		</script>
 	</body>

@@ -7,6 +7,16 @@ const host = require("../server.js").host;
 
 router.get('/',function(req,res) {
     res.sendFile(path.join(__dirname, "..", "pages/home.html"));
+    if (!req.session.tracks) {
+        req.session.tracks = [{
+            name: "L's Ideology",
+            artist: "DeathNote",
+            path: "../audios/ls-ideology.mp3",
+            image: "../images/art.png",
+            videoId: "P2OA4mQ3mkc"
+        }];
+        req.session.track_index = 0;
+    }
 });
 router.get('/player', (req, res, next) => {
     let index = req.query.index;
