@@ -34,17 +34,17 @@
 					<input id="playlist_input" type="url" placeholder="Paste YT Playlist URL here" name="playlistURL" required> <br>
 					<div id="checkBox1">
 						<input id="disableSeek" type="checkbox" name="disableSeeking" value="true">
-						<label class="disableSeekLabel" for="disableSeek">Disable Seek bar? (recommended)</label>
+						<label class="disableSeekLabel" for="disableSeek">Disable Seek bar (recommended)</label>
 					</div> <br/>
 					<button class="play-button" type="submit" onclick="loadingScreen.render()">Play</button> <br>
 				</form>
 			</div>
 			<div class="lists">
 				<ul class="nav">
-					<li onclick="playlist1()">Test list 1</li>
-					<li onclick="playlist2()">Test list 2</li>
-					<li onclick="playlist3()">Test list 3</li>
-					<li onclick="playlist4()">Test list 4</li>
+					<li onclick="playlist1()">Feelings</li>
+					<li onclick="playlist2()">Energetic</li>
+					<li onclick="playlist3()">Deep Thinking</li>
+					<li onclick="playlist4()">AMV Mix</li>
 				</ul>
 			</div>
 			<footer>
@@ -81,7 +81,7 @@
 			}
 			const playlist4 = () => {
 				let id = "PLugoFmzqrLstY8pA7SBjWreIQKJ7MNMgD"
-				let text = 'Songs: 85+ <br>Artists: ImagineDragons, NEFFEX, Marshmello, Lil Nas X, RUSTAGE, ...';
+				let text = 'Songs: 85+ <br>Artists: NEFFEX, Marshmello, Lil Nas X, RUSTAGE, ...';
 				let viewUrl = 'https://www.youtube.com/playlist?list=' +id;
 				let playUrl = 'http://'+ location.host+'/list?id=' +id;
 				Alert.playlistInfo(text, viewUrl, playUrl, 'Testing 3')
