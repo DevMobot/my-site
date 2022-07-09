@@ -3,7 +3,6 @@ const path = require("path");
 const yts = require('yt-search');
 const ytdl = require('ytdl-core');
 const ytas = require('youtube-audio-stream');
-const deleteFile = require('../deleteFile.js');
 const fs = require('fs');
 
 const config = require("../config.js");
