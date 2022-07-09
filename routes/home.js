@@ -20,14 +20,12 @@ router.get('/',function(req,res) {
 });
 router.get('/player',(req, res) => {
     if (req.query.index) {
+        if (req.query.index > req.session.tracks.length || req.query.index < 1) return res.redirect("/player"); 
         req.session.track_index = parseInt(req.query.index)-1;
         res.redirect("/player");
         return;
     }
     res.sendFile(path.join(__dirname, "..", "pages/player.html"));
-})
-router.get('/stt', (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "pages/stt.html"));
 })
 router.get("/exit_player", (req, res) => {
     req.session.track_index = 0;
