@@ -124,15 +124,15 @@ const rateLimit = () => {
   } else {
     
     next_btn.style.color = "grey";
-    prev_btn.style.color = "grey";
+    //prev_btn.style.color = "grey";
     next_btn.onclick = emptyFunc;
-    prev_btn.onclick = emptyFunc;
+    //prev_btn.onclick = emptyFunc;
     
     setTimeout(() => {
       next_btn.onclick = nextTrack;
-      prev_btn.onclick = prevTrack;
+      //prev_btn.onclick = prevTrack;
       next_btn.style.color = "black";
-      prev_btn.style.color = "black";
+      //prev_btn.style.color = "black";
     }, 4500)
 
   } 

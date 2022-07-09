@@ -18,13 +18,12 @@ router.get('/',function(req,res) {
         req.session.track_index = 0;
     }
 });
-router.get('/player', (req, res, next) => {
-    let index = req.query.index;
-    if (index) {
-        req.session.track_index = parseInt(index)-1;
+router.get('/player',(req, res) => {
+    if (req.query.index) {
+        req.session.track_index = parseInt(req.query.index)-1;
+        res.redirect("/player");
+        return;
     }
-    next();
-},(req, res) => {
     res.sendFile(path.join(__dirname, "..", "pages/player.html"));
 })
 router.get('/stt', (req, res) => {
