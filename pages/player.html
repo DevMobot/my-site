@@ -10,6 +10,7 @@
   <!-- Load the custom CSS style file -->
   <link rel="stylesheet" type="text/css" href="css/alertbox.css">
   <link rel="stylesheet" type="text/css" href="css/player.css">
+  <link rel="stylesheet" type="text/css" href="css/player_queue.css">
   <link rel="icon" type="image/x-icon" href="images/art.png">
 </head>
 <body>
@@ -59,14 +60,33 @@
         value="99" class="volume_slider" onchange="setVolume()">
       <i class="fa fa-volume-up"></i>
     </div>
-  </div> 
+    
     <div class="exit-button-container">
       <a href="/exit_player">
         <button type="button" class="exit-button"> Exit Player </button>
       </a>
     </div>
+    
+
+  </div> 
+  
+  <div class="queueContainer">
+    <code class="queueLabel">Queue</code>
+    <div class="queue">
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+      <div class="queueItem"> <span>OK</span> </div>
+    </div>
+  </div>
   <!-- Load the scripts for the player -->
   <script src="js/player.js"></script>
+  <script src="js/player_s2.js"></script>
   <script src="js/alert.js"></script>
   <script>
     function getCookie(cname) {

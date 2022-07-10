@@ -1,0 +1,59 @@
+.queueContainer {
+    width: 380px;
+    border-radius: 10px;
+    display: block;
+}
+.queue {
+    background-color: rgb(177, 142, 177);
+    font-family: sans-serif;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 500px;
+    border: #8b5c8d solid 1px;
+}
+.queueItem {
+    background-color: #724d73;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 80px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 12px #876488;
+}
+.box span {
+    font-size: 45px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+  background: #d1cfd1;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(113, 113, 113);
+}
+.queueLabel {
+    background-color: #724d73;
+    width: 380px;
+    display: flex;
+    padding: 10px;
+    border: 0;
+    margin: 0
+}

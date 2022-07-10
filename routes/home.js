@@ -52,6 +52,8 @@ router.get('/',function(req,res) {
 .get("/loading", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "pages/loading.html"));
 })
-
+.get("/k", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "pages/k.html"));
+})
 
 module.exports = router;

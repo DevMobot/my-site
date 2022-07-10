@@ -3,9 +3,14 @@ body {
     
     /* Smoothly transition the background color */
     transition: background-color .5s;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+
 } 
 .player {
-    height: 95vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -100,32 +105,9 @@ i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
     cursor: pointer;
 }
 
-#SongList {
-    position: absolute;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin-top: 2%;
-    font-family: monospace;
-    justify-content: center;
-}
-li {
-    font-size: x-large;
-    border-radius: 10px;
-}
-ol {
-    list-style-type: none;
-    margin: 1%;
-    padding: 1%;
-}
 .exit-button {
-    position: absolute;
     align-items: center;
-    margin: 0 auto;
+    margin: 0px auto;
     left: 0;
     right: 0;
     width: 150px;
@@ -139,8 +121,12 @@ ol {
     padding: 2px 0px 0px;
     border-color: black;
     cursor: pointer;
+    text-decoration: none;
 }
 .exit-button-container {
     padding: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+a {
+    text-decoration: none;
 }
