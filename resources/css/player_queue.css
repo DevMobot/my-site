@@ -1,7 +1,6 @@
 .queueContainer {
-    width: 380px;
+    width: 400px;
     border-radius: 10px;
-    display: block;
 }
 .queue {
     background-color: rgb(177, 142, 177);
@@ -12,6 +11,7 @@
     justify-content: center;
     overflow-y: scroll;
     height: 500px;
+    width: 100%;
     border: #8b5c8d solid 1px;
 }
 .queueItem {
@@ -20,7 +20,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
     height: 80px;
     margin: 10px;
     border-radius: 10px;
