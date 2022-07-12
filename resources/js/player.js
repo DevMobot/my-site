@@ -50,7 +50,6 @@ const mobileCheck = function() {
   return check;
 };
 if (mobileCheck()) {
-  document.querySelector(".queueContainer").style.width = "100%";
   document.querySelector(".queue").style.width = "100%";
   now_playing.style.fontSize = "1rem";
   track_name.style.fontSize = "1.5rem";
@@ -237,4 +236,11 @@ noSeek();
 if ('mediaSession' in navigator) {
   navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
   navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
+}
+
+
+const displayQueue = () => {
+  track_list.forEach(song => {
+    
+  })
 }
