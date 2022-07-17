@@ -20,8 +20,7 @@ const host_conn = location.protocol;
 const host = location.host;
 
 // Create new audio element
-let curr_track = new Audio("k");
-//document.createElement('audio');
+let curr_track = document.createElement('audio');
 
 function getCookie(cname) {
   let name = cname + "=";
