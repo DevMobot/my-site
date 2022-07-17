@@ -43,7 +43,6 @@
   overflow: hidden;
 }
 .queueTrackArt {
-  background-image: url("https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png");
   align-self: center;
   margin-left: 8px;
   border-radius: 5px;
@@ -51,4 +50,6 @@
   background-position: center;
   width: 64px;
   height: 64px;
+  min-width: 64px;
+  max-width: 64px;
 }

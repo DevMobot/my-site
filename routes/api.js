@@ -15,7 +15,12 @@ router.get("/", (req, res) => {
     console.log(req.query.msg);
     res.send("k");
 })
-.get('/getTracks', function(req, res) {
+.get('/getTracks', function getSessionViaQuerystring (req, res, next) {
+    var sessionId = req.query.session;
+    if (!sessionId) return res.sendStatus(401); 
+    req.cookies['connect.sid'] = req.query.session; // CHANGE SESSION
+    next();
+}, function(req, res) {
     const defTracks = [{
         name: "L's Ideology",
         artist: "DeathNote",

@@ -20,7 +20,8 @@ const host_conn = location.protocol;
 const host = location.host;
 
 // Create new audio element
-let curr_track = document.createElement('audio');
+let curr_track = new Audio("k");
+//document.createElement('audio');
 
 function getCookie(cname) {
   let name = cname + "=";
@@ -56,8 +57,8 @@ if (mobileCheck()) {
   track_artist.style.fontSize = "1rem";
 }
 const media = (title, artist, album, img) => {
-  if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
+  if ('mediaSession' in window.navigator) {
+      window.navigator.mediaSession.metadata = new MediaMetadata({
         title: title,
         artist: artist,
         album: album,
@@ -65,13 +66,18 @@ const media = (title, artist, album, img) => {
           { src: img,   type: 'image/png' }
         ]
       });
+      //console.log("kk")
       navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
       navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
+      navigator.mediaSession.setActionHandler('play', playpauseTrack);
+      navigator.mediaSession.setActionHandler('pause', playpauseTrack);
+      console.log(navigator.mediaSession)
+      console.log("okkk");
   }
 }
 // Define the tracks that have to be play"ed
 let track_index = parseInt(Get(host_conn+"//"+host+"/api/getindex?session="+getCookie("connect.sid")));
-let track_list = JSON.parse(Get(host_conn+"//"+host+"/api/getTracks"));
+let track_list = JSON.parse(Get(host_conn+"//"+host+"/api/getTracks?session=" + getCookie("connect.sid")));
 
 function random_bg_color() {
 
@@ -95,7 +101,7 @@ function resetValues() {
 
 // Load the first track in the tracklist
 
-function nextTrack() {
+let nextTrack = () => {
   if (track_index < track_list.length - 1)
     track_index += 1;
   else track_index = 0;
@@ -103,7 +109,7 @@ function nextTrack() {
   playTrack();
 }
 
-function prevTrack() {
+let prevTrack = () => {
   if (track_index > 0)
     track_index -= 1;
   else track_index = track_list.length;
@@ -116,25 +122,32 @@ const rateLimit = () => {
   let emptyFunc = () => { return };
 
   let check = Get(host_conn+"//"+host+"/api/nextReady?session="+ getCookie("connect.sid"));
-  
+  //const spt = prevTrack;
+  const snt = nextTrack;
+
   if (check == "true") {
     next_btn.onclick = nextTrack;
     prev_btn.onclick = prevTrack;
     next_btn.style.color = "black";
     prev_btn.style.color = "black";
+    //callback();
   } else {
     
     next_btn.style.color = "grey";
     //prev_btn.style.color = "grey";
     next_btn.onclick = emptyFunc;
+    nextTrack = emptyFunc;
+    //prevTrack = emptyFunc;
     //prev_btn.onclick = emptyFunc;
     
     setTimeout(() => {
+      //callback();
+      nextTrack = snt;
       next_btn.onclick = nextTrack;
       //prev_btn.onclick = prevTrack;
       next_btn.style.color = "black";
       //prev_btn.style.color = "black";
-    }, 4500)
+    }, 3500)
 
   } 
 }
@@ -158,17 +171,20 @@ function loadTrack(track_index) {
   if (mobileCheck()) track_name.textContent = track_list[track_index].name.substring(0, 30);
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
-  media(track_list[track_index].name.substring(0, 45), track_list[track_index].artist, "YouTube", track_list[track_index].image);
   rateLimit();
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
+  curr_track.addEventListener('canplaythrough', () => {
+    media(track_list[track_index].name.substring(0, 45), track_list[track_index].artist, "YouTube", track_list[track_index].image);
+  })
   /*
   if ('mediaSession' in navigator) {
     navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
     navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
   } */
   //random_bg_color();
+
 }
 loadTrack(track_index);
 //------------------------------------------------------------------------------------------------
@@ -181,12 +197,18 @@ function playpauseTrack() {
 function playTrack() {
   curr_track.play();
   isPlaying = true;
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.playbackState = 'playing';
+  }
   playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
 }
 
 function pauseTrack() {
   curr_track.pause();
   isPlaying = false;
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.playbackState = 'paused';
+  }
   playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
 }
 
@@ -233,14 +255,35 @@ const noSeek = () => {
 noSeek(); 
 //songList();
 
+/*
 if ('mediaSession' in navigator) {
   navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
   navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
+  navigator.mediaSession.setActionHandler('play', playpauseTrack);
+  navigator.mediaSession.setActionHandler('pause', playpauseTrack);
 }
-
+*/
 
 const displayQueue = () => {
-  track_list.forEach(song => {
+  for (let i = 0; i < track_list.length; i++) {
     
-  })
+    let listItem = document.createElement("div");
+    let artDiv = document.createElement("div");
+    let trackNameSpan = document.createElement("span");
+
+    let queueDiv = document.querySelector(".queue");
+
+    artDiv.classList.add("queueTrackArt");
+    listItem.classList.add("queueItem");
+
+    let trackNameText = document.createTextNode(track_list[i].name);
+    trackNameSpan.appendChild(trackNameText);
+
+    artDiv.style.backgroundImage = `url(${track_list[i].image})`;
+
+    queueDiv.appendChild(listItem);
+    listItem.appendChild(artDiv);
+    listItem.appendChild(trackNameSpan);
+  }
 }
+displayQueue();
