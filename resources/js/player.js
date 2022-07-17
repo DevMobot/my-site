@@ -172,12 +172,11 @@ function loadTrack(track_index) {
   now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + track_list.length;
 
   rateLimit();
+  media(track_list[track_index].name.substring(0, 45), track_list[track_index].artist, "YouTube", track_list[track_index].image);
 
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
-  curr_track.addEventListener('canplaythrough', () => {
-    media(track_list[track_index].name.substring(0, 45), track_list[track_index].artist, "YouTube", track_list[track_index].image);
-  })
+  
   /*
   if ('mediaSession' in navigator) {
     navigator.mediaSession.setActionHandler('previoustrack', prevTrack);
