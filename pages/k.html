@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet", href="css/player_queue.css">
     <title>Testing</title>
 </head>
 <body>
-    <h1>KKKKKKKKKKKK</h1>
-    <div class="queue">
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-        <div class="queueItem"> <span>OK</span> </div>
-    </div>
+    <h1>OK</h1>
+    <button onclick="play()">PLAY</button>
+    <script>
+        const audio = document.createElement("audio");
+        audio.src = "../audios/ls-ideology.mp3";
+        audio.load();
+
+        if ('mediaSession' in navigator) {
+            window.navigator.mediaSession.metadata = new MediaMetadata({
+                title: "L's Ideology",
+                artist: "Deathnote",
+                artwork: [{ src: "/images/art.png", type: "image/png" }],
+                album: "Deathnote"
+            });
+            window.navigator.mediaSession.setActionHandler("play", () => { 
+                play();
+            })
+            window.navigator.mediaSession.setActionHandler("pause", () => { 
+                audio.pause();
+                if ('mediaSession' in navigator) {
+                    window.navigator.mediaSession.playbackState = "none";
+                }
+            })
+        }
+
+        const play = () => {
+            if ('mediaSession' in navigator) {
+                window.navigator.mediaSession.playbackState = "playing";
+            }
+            audio.play();
+        }
+    </script>
 </body>
 </html>

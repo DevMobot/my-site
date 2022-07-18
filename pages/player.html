@@ -96,7 +96,7 @@
     }
 
     if (!getCookie("alertSeen")) {
-      Alert.render("▪ Player may get closed if you pause songs for more than 30 minutes.<br><br>▪ Enjoy high quality ad free music with background playback support!", false);
+      Alert.render("▪ Player may get closed if you pause songs for more than 30 minutes.<br><br>▪ Reloading this tab may cause notification media control errors. <br><br>▪ Enjoy high quality ad free music with background playback support!", false);
     }
 
     function setCookie(cname, cvalue, exdays) {
@@ -106,6 +106,7 @@
 	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
     setCookie("alertSeen", "true", 1);
+
   </script>
 </body>
 </html>
