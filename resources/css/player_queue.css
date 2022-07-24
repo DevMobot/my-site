@@ -1,6 +1,5 @@
 .queue {
   width: 400px;
-  border-radius: 10px;
   background-color: rgb(177, 142, 177);
   font-family: sans-serif;
   display: block;
@@ -27,26 +26,6 @@
   margin-left: 10px;
   margin-right: 5px;
 }
-.queueItem:hover {
-  box-shadow: 0px 3px 12px #3e313e;
-  background-color: #7c457e;
-}
-.box span {
-  font-size: 45px;
-}
-.queueLabel {
-  background-color: #724d73;
-  width: 100%;
-  display: flex;
-  position: sticky;
-  top: 0;
-  border: 0;
-  margin: 0;
-}
-.queueLabel > span {
-  padding: 10px;
-  overflow: hidden;
-}
 .queueTrackArt {
   align-self: center;
   margin-left: 8px;
@@ -57,4 +36,28 @@
   height: 64px;
   min-width: 64px;
   max-width: 64px;
+}
+.queueLabel {
+  background-color: #724d73;
+  width: 400px;
+  padding-block: 5px;
+}
+.qnp {
+  box-shadow: 0px 3px 12px #3e313e;
+  background-color: #7c457e;
+}
+.npb {
+  border: 1px solid black;
+  border-radius: 7px;
+  float: right;
+  margin-right: 10px;
+  padding: 3px;
+  padding-inline: 10px;
+  background: #724d73;
+}
+.qspan {
+  float: left;
+  font-size: large;
+  align-self: center;
+  margin-left: 10px;
 }

@@ -54,6 +54,8 @@ const mobileCheck = function() {
 
 if (mobileCheck()) {
   document.querySelector(".queue").style.width = "100%";
+  document.querySelector(".queueLabel").style.width = "100%";
+
   now_playing.style.fontSize = "1rem";
   track_name.style.fontSize = "1.5rem";
   track_artist.style.fontSize = "1rem";
@@ -173,7 +175,10 @@ async function loadTrack(track_index) {
   updateTimer = setInterval(seekUpdate, 1000);
   curr_track.addEventListener("ended", nextTrack);
   
-  //await media(track_index);
+  document.querySelectorAll(".queueItem").forEach(e => {
+    e.classList.remove("qnp");
+  });
+
 }
 loadTrack(track_index);
 //------------------------------------------------------------------------------------------------
@@ -193,6 +198,9 @@ function playTrack() {
   isPlaying = true;
   if ('mediaSession' in window.navigator) window.navigator.mediaSession.playbackState = "playing";
   playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
+
+  document.getElementById(track_index+"").classList.add("qnp");
+
 }
 
 function pauseTrack() {
@@ -267,6 +275,12 @@ if ('mediaSession' in navigator) {
 
 const loadFromQueue = (i) => {
   track_index = i;
+  
+  document.querySelectorAll(".queueItem").forEach(e => {
+    e.classList.remove("qnp");
+  })
+
+  document.getElementById(i+"").classList.add("qnp");
 }
 
 const displayQueue = () => {
@@ -280,8 +294,9 @@ const displayQueue = () => {
 
     artDiv.classList.add("queueTrackArt");
     listItem.classList.add("queueItem");
+    listItem.id = i+"";
 
-    listItem.setAttribute("onclick", `loadTrack(${i});playTrack();loadFromQueue(${i})`);
+    listItem.setAttribute("onclick", `loadTrack(${i});playTrack();loadFromQueue(${i});`);
     //`redirect('${host_conn}//${host}/player?index=${i+1}')`;
 
     let trackNameText = document.createTextNode(track_list[i].name);
@@ -295,3 +310,7 @@ const displayQueue = () => {
   }
 }
 displayQueue();
+
+const scrollQueue = () => {
+  document.getElementById(track_index+'').scrollIntoView({ behavior: 'smooth' });
+}
