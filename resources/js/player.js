@@ -133,13 +133,13 @@ const rateLimit = () => {
     next_btn.style.color = "grey";
     //prev_btn.style.color = "grey";
     next_btn.onclick = emptyFunc;
-    nextTrack = emptyFunc;
+    //nextTrack = emptyFunc;
     //prevTrack = emptyFunc;
     //prev_btn.onclick = emptyFunc;
     
     setTimeout(() => {
       //callback();
-      nextTrack = snt;
+      //nextTrack = snt;
       next_btn.onclick = nextTrack;
       //prev_btn.onclick = prevTrack;
       next_btn.style.color = "black";
