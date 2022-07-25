@@ -105,7 +105,7 @@ router.get("/", (req, res) => {
     	
     	res.sendFile(path.join(__dirname, "..", `/resources/audios/cache/${vID}.mp3`));
     	
-    	if (req.session.tracks.length-1 > trackIndex) {
+    	if (req.session.tracks && req.session.tracks.length-1 > trackIndex) {
             let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
@@ -122,7 +122,7 @@ router.get("/", (req, res) => {
     	//console.log('h')
     	ytas('https://www.youtube.com/watch?v='+vID).pipe(res);
 
-        if (req.session.tracks.length-1 > trackIndex) {
+        if (req.session.tracks && req.session.tracks.length-1 > trackIndex) {
             let nextTrackVID = req.session.tracks[trackIndex+1].videoId;
     	    if (!fs.existsSync(path.join(__dirname, "..", `/resources/audios/cache/${nextTrackVID}.mp3`)) && !req.session.noSeek) {
                 ytdl('https://www.youtube.com/watch?v='+nextTrackVID, {
