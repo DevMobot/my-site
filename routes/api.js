@@ -197,7 +197,8 @@ router.get("/", (req, res) => {
         res.send("Err\n"+e);
     }
     
+}).get('/dlstart', (req,  res) => {
+    const list = req.query.list;
 })
-
 
 module.exports = router;
