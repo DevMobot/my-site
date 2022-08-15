@@ -175,15 +175,7 @@ async function loadTrack(track_index) {
   rateLimit();
 
   updateTimer = setInterval(seekUpdate, 1000);
-  curr_track.addEventListener("ended", () => {
-    if (track_index < track_list.length - 1 && loopQueue) {
-      nextTrack();
-    } else {
-      loadTrack(0);
-      pauseTrack();
-      return;
-    }
-  });
+  curr_track.addEventListener("ended", nextTrack);
   
   document.querySelectorAll(".queueItem").forEach(e => {
     e.classList.remove("qnp");
