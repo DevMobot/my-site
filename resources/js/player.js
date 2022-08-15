@@ -15,6 +15,7 @@ let total_duration = document.querySelector(".total-duration");
 let isPlaying = false;
 let updateTimer;
 let seeker = true;
+let loopQueue = true;
 
 const host_conn = location.protocol;
 const host = location.host;
@@ -102,6 +103,7 @@ let nextTrack = () => {
   if (track_index < track_list.length - 1)
     track_index += 1;
   else track_index = 0;
+
   loadTrack(track_index);
   playTrack();
 }
@@ -173,7 +175,15 @@ async function loadTrack(track_index) {
   rateLimit();
 
   updateTimer = setInterval(seekUpdate, 1000);
-  curr_track.addEventListener("ended", nextTrack);
+  curr_track.addEventListener("ended", () => {
+    if (track_index < track_list.length - 1 && loopQueue) {
+      nextTrack();
+    } else {
+      loadTrack(0);
+      pauseTrack();
+      return;
+    }
+  });
   
   document.querySelectorAll(".queueItem").forEach(e => {
     e.classList.remove("qnp");
