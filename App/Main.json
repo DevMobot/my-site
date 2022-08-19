@@ -1,0 +1,13 @@
+{
+    "$jason": {
+        "body": {
+            "background": {
+                "type": "html",
+                "url": "ultimate-player.herokuapp.com/",
+                "action": {
+                    "type": "$default"
+                }
+            }
+        }
+    }
+}

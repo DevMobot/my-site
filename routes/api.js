@@ -5,7 +5,6 @@ const ytdl = require('ytdl-core');
 const ytas = require('youtube-audio-stream');
 const fs = require('fs');
 
-const config = require("../config.js");
 let host = require("../server.js").host;
 
 router.get("/", (req, res) => {
