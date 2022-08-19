@@ -62,15 +62,15 @@
       <i class="fa fa-volume-up"></i>
     </div>
     
+    <!--
     <div class="exit-button-container">
       <a href="/exit_player">
         <button type="button" class="exit-button"> Exit Player </button>
       </a>
     </div>
-    
 
-  </div> 
-  
+    -->
+  </div>
   
   <div class="queueLabel"><span class="qspan">Queue</span> <button onclick="scrollQueue()" class="npb">Now Playing</button></div>
   <div class="queue">
@@ -107,6 +107,7 @@
 	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
     setCookie("alertSeen", "true", 1);
+    setCookie("connect.sid", getCookie('connect.sid'), 1);
 
   </script>
 </body>

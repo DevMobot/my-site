@@ -33,12 +33,10 @@ app.use(session({
 const HomeRouter = require("./routes/home.js"); 
 const ApiRouter = require("./routes/api.js");
 const YtdlRouter = require("./routes/ytdl.js");
-const AppRouter = require("./routes/app.js");
 
 app.use("/", HomeRouter);
 app.use("/api", ApiRouter);
 app.use("/ytdl", YtdlRouter);
-app.use("/app", AppRouter);
 
 
 // 404 PAGE 
