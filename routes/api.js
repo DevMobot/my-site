@@ -156,8 +156,6 @@ router.get("/", (req, res) => {
         const playlist_vid_count = data.videos.length;
         const videos = data.videos;
 
-        //res.cookie("playlist_vid_count", playlist_vid_count);
-
 		req.session.track_index = 0;
         req.session.tracks = [];
         
