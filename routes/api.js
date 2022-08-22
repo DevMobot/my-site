@@ -181,7 +181,7 @@ router.get("/", (req, res) => {
             res.redirect('/player');
         }else {
             req.session.noSeek = false;
-            if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + videos[0].videoId + ".mp4"))) return res.redirect("/player");
+            if (fs.existsSync(path.join(__dirname, "../resources/audios/cache/" + videos[0].videoId + ".mp3"))) return res.redirect("/player");
 
             ytdl(`https://www.youtube.com/watch?v=${videos[0].videoId}`, {
                 quality: "highestaudio"
