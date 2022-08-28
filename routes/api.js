@@ -156,11 +156,11 @@ router.get("/", (req, res) => {
         const playlist_vid_count = data.videos.length;
         const videos = data.videos;
 
-		req.session.track_index = 0;
+	req.session.track_index = 0;
         req.session.tracks = [];
         
         videos.forEach(async v => {
-            let t = v.title.replace(/[^\w\s]/gi, '').split(/ +/).join(" ");
+            let t = v.title; //.replace(/[^\w\s]/gi, '').split(/ +/).join(" ");
             if (t.length > 30) t.substring(0, 30);
             let p = `http://${host}/api/ytstream?vID=${v.videoId}&session=${req.sessionID}`;
 
